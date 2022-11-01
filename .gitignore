@@ -1,0 +1,4 @@
+/node_modules
+/client/node_modules
+# Secret Stuff
+/server/environment/environment.js
