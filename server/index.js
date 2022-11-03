@@ -1,6 +1,6 @@
 
 const path=require('path');
-const express=require("express");
+const express = require("express");
 const userRoutes=require('./routes/userRoutes');
 const adminRoutes= require('./routes/adminRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
@@ -8,11 +8,13 @@ const PORT = process.env.PORT || 3001;
 const dotenv=require("dotenv");
 const connectDB=require("./config/db");
 const morgan=require("morgan");
+const {addNewRegistration}=require("./controllers/adminController");
 
 
 const app=express();
 dotenv.config();
-connectDB();
+
+// connectDB();
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -33,6 +35,8 @@ app.use(notFound);
 app.use(errorHandler);
 
 
-app.listen(PORT,() =>{
-    console.log(`Server listening on.... PORT: ${PORT}`);
+addNewRegistration();
+
+app.listen(3000,() =>{
+    console.log("server runnig at port 3000");
 });

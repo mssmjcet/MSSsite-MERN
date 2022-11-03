@@ -1,7 +1,7 @@
 {
   "name": "mss-mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "mssmjcet website ",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
@@ -9,7 +9,7 @@
     "postinstall": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\""
   },
-  "author": "",
+  "author": "quadri",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,5 +20,13 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0",
     "morgan": "^1.10.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/123quadri/MSSsite-MERN.git"
+  },
+  "bugs": {
+    "url": "https://github.com/123quadri/MSSsite-MERN/issues"
+  },
+  "homepage": "https://github.com/123quadri/MSSsite-MERN#readme"
 }
