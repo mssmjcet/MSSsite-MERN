@@ -1,4 +1,6 @@
 const mongoose=require('mongoose');
+
+
 const registrationSchema = new mongoose.Schema({
   eventID:String,
   // eventName:String,
@@ -7,7 +9,6 @@ const registrationSchema = new mongoose.Schema({
   phoneNumber:String,
   rollNumber:Number,
   paymentFile:String,
-
 });
 
 const Registration = mongoose.model("Registration", registrationSchema);
