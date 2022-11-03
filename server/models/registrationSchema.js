@@ -1,11 +1,13 @@
 const mongoose=require('mongoose');
 const registrationSchema = new mongoose.Schema({
   eventID:String,
-  eventName:String,
+  // eventName:String,
   nameOfParticipant:String,
   emailId:String,
-  phoneNumber:Number,
+  phoneNumber:String,
   rollNumber:Number,
+  paymentFile:String,
+
 });
 
 const Registration = mongoose.model("Registration", registrationSchema);
