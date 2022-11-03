@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import Home from "./components/user/Home";
 import Register from "./components/user/Register";
+import Tempregister from "./components/user/Tempregister.js";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 <Routes>
   <Route path = "/" element = {<Home/>} exact />
   <Route path ="/registerEvent" element={<Register/>} exact/>
+  <Route path ="/tempRegisterEvent" element={<Tempregister/>} exact/>
   </Routes>
  </BrowserRouter>
   );
