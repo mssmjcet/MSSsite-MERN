@@ -9,10 +9,6 @@ const dotenv=require("dotenv");
 const connectDB=require("./config/db");
 const morgan=require("morgan");
 const {addNewRegistration}=require("./controllers/adminController");
-const bodyParser=require('body-parser');
-var multer = require('multer');
-
-var upload = multer();
 
 
 const app=express();
@@ -23,15 +19,6 @@ dotenv.config();
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use(bodyParser.json()); 
-
-// for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true })); 
-//form-urlencoded
-
-// for parsing multipart/form-data
-app.use(upload.array()); 
-app.use(express.static('public'))
 
 app.use(express.static(path.resolve(__dirname,'../client/build')));
 
