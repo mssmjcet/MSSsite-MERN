@@ -8,6 +8,7 @@ const registrationSchema = new mongoose.Schema({
   emailId:String,
   phoneNumber:String,
   rollNumber:Number,
+  paymentStatus:String,
   paymentFile:String,
 });
 

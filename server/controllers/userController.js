@@ -17,7 +17,9 @@ const addEventRegistration =asyncHandler(async(req,res) => {
     })
 
   });
-    console.log(req.file.filename);
+    let filename='Nil';
+    if(req.file && req.file.filename) filename=req.file.filename;
+    
   const new_Registration = new Registration({
     eventID:req.body.EventId,
     // eventName:req.body.Name,
@@ -25,14 +27,15 @@ const addEventRegistration =asyncHandler(async(req,res) => {
     emailId:req.body.EmailId,
     phoneNumber:req.body.PhoneNo,
     rollNumber:req.body.RollNo,
-    paymentFile:req.file.filename,
+    paymentStatus:req.body.PaymentStatus,
+    paymentFile:filename,
   });
 
   new_Registration.save();
 
 
 
-    console.log(req.body);
+    console.log(new_Registration);
     console.log("reached");
 });
 
