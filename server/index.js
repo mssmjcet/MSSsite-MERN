@@ -10,7 +10,7 @@ var multer = require('multer');
 const connectDB=require("./config/db");
 const morgan=require("morgan");
 
-const {addNewRegistration}=require("./controllers/adminController");
+// const {addNewRegistration}=require("./controllers/adminController");
 const bodyParser=require('body-parser');
 
 
@@ -55,7 +55,7 @@ app.use(notFound);
 // app.use(errorHandler);
 
 
-addNewRegistration();
+// addNewRegistration();
 
 app.listen(3000,() =>{
     console.log("server runnig at port 3000");

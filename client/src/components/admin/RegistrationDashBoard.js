@@ -29,30 +29,30 @@ const RegistrationDashBoard=()=>{
         setEventId(e.target.value);
         fetch('/api/users/getAllEvents/'+e.target.value).then((res)=>res.json())
     .then((data)=>setEventData(data))
-    
+
     //fetch tests
     fetch('/api/admin/getRegistrationInfo',{
-     
+
     // Adding method type
     method: "POST",
-     
+
     // Adding body or contents to send
     body: JSON.stringify({
         'eventId':eventId,
     }),
-     
+
     // Adding headers to the request
     headers: {
         "Content-type": "application/json; charset=UTF-8"
     }
 }).then((res) => res.json())
   .then((data)=> {
-     setRegistrationData(data);
+     setRegistrationData(data.data);
      console.log(data);
     // console.log(tests);
   //  setLoading(false);
   })
-  
+
     }
     return(
         <div className="container-fluid">
@@ -65,7 +65,7 @@ const RegistrationDashBoard=()=>{
                         {eventData.map((event)=>{
                             return <option value={event.id}>{event.name}</option>
                         })}
-                        
+
                     </select>
                     </form>
                 </div>
@@ -89,16 +89,16 @@ const RegistrationDashBoard=()=>{
         return(
             <tr>
       <th scope="row">1</th>
-      <td>{registration.name}</td>
-      <td>{registration.rollNo}</td>
+      <td>{registration.nameOfParticipant}</td>
+      <td>{registration.rollNumber}</td>
       <td>{registration.emailId}</td>
-      <td>{registration.phoneNo}</td>
+      <td>{registration.phoneNumber}</td>
       <td>{registration.paymentStatus}</td>
-      <td><img src={registration.paymentScreenshot}/></td>
+      <td><img src=__dirname,'/uploads/PaymentScreenshot-1667586632972.PNG'/></td>
     </tr>
         );
     })
-    
+
     }
   </tbody>
 </table>
