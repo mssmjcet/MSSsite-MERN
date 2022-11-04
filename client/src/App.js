@@ -10,6 +10,7 @@ import './App.css';
 import Home from "./components/user/Home";
 import Register from "./components/user/Register";
 import Tempregister from "./components/user/Tempregister.js";
+import RegistrationDashBoard from "./components/admin/RegistrationDashBoard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
   <Route path = "/" element = {<Home/>} exact />
   <Route path ="/registerEvent" element={<Register/>} exact/>
   <Route path ="/tempRegisterEvent" element={<Tempregister/>} exact/>
+  <Route path="/admin/registrationDashboard" element={<RegistrationDashBoard/>} exact />
   </Routes>
  </BrowserRouter>
   );
