@@ -9,7 +9,6 @@ import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import Home from "./components/user/Home";
 import Register from "./components/user/Register";
-
 import RegistrationDashBoard from "./components/admin/RegistrationDashBoard";
 
 function App() {
