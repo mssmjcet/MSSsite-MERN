@@ -62,7 +62,7 @@ app.get('*', function(req, res) {
   });
 
 app.use((error, req, res, next) => {
-    console.log('This is the rejected field ->', error.field);
+    console.log('This is the rejected field ->', error);
   });
 
 app.use(notFound);
