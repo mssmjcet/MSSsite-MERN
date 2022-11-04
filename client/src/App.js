@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import './App.css';
 import Home from "./components/user/Home";
 import Register from "./components/user/Register";
-import Tempregister from "./components/user/Tempregister.js";
+
 import RegistrationDashBoard from "./components/admin/RegistrationDashBoard";
 
 function App() {
