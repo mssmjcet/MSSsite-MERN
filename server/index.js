@@ -10,21 +10,7 @@ var multer = require('multer');
 const connectDB=require("./config/db");
 const morgan=require("morgan");
 
- // const multer= require("multer");
-
-
- // var upload = multer({
- //   storage:multer.diskStorage({
- //     destination:(req,file,cb)=>{
- //       cb(null,'./uploads');
- //     },
- //     filename:function(req,file,callback){
- //       callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))
- //     }
- //   })
- //
- // });
-const {addNewRegistration}=require("./controllers/adminController");
+// const {addNewRegistration}=require("./controllers/adminController");
 const bodyParser=require('body-parser');
 
 
@@ -69,7 +55,7 @@ app.use(notFound);
 // app.use(errorHandler);
 
 
-addNewRegistration();
+// addNewRegistration();
 
 app.listen(3000,() =>{
     console.log("server runnig at port 3000");

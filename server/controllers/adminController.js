@@ -13,6 +13,24 @@ const addNewRegistration=()=>{
   new_Registration.save();
 };
 
+const getRegistrationsWithEventId=(req,res)=>{
+
+
+   Registration.find({eventID:1},function(err,registrations){
+     if(registrations)
+     {
+       res.json({
+         'data':registrations,
+       })
+     }
+     // res.render("Registration",{
+     //   Allregistrations:registrations,
+     // })
+   })
+
+}
+
 module.exports = {
-  addNewRegistration
+  addNewRegistration,
+  getRegistrationsWithEventId
 }
