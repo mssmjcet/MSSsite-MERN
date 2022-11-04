@@ -18,7 +18,7 @@ function App() {
 <Routes>
   <Route path = "/" element = {<Home/>} exact />
   <Route path ="/registerEvent" element={<Register/>} exact/>
-  <Route path ="/tempRegisterEvent" element={<Tempregister/>} exact/>
+  
   <Route path="/admin/registrationDashboard" element={<RegistrationDashBoard/>} exact />
   </Routes>
  </BrowserRouter>
