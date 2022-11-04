@@ -64,6 +64,7 @@ const Register=()=>{
     <div  className="text-center">Select a Event to Register and Fill the details.</div><br/>
 
 <select className="form-control item form-select" placeholder="select event" name="EventId" onChange={(e)=>setEventId(e.target.value)}>
+<option>Select a Event</option>
 <option value="1">machine learning</option>
 <option value="2">Runtime Terror</option>
 
