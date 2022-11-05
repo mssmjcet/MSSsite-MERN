@@ -27,8 +27,8 @@ const RegistrationDashBoard=()=>{
 
     const fetchRegistrationsForEvent=(e)=>{
         setEventId(e.target.value);
-        fetch('/api/users/getAllEvents/'+e.target.value).then((res)=>res.json())
-    .then((data)=>setEventData(data))
+       // fetch('/api/users/getAllEvents/'+e.target.value).then((res)=>res.json())
+    //.then((data)=>setEventData(data))
 
     //fetch tests
     fetch('/api/admin/getRegistrationInfo',{
@@ -94,7 +94,7 @@ const RegistrationDashBoard=()=>{
       <td>{registration.emailId}</td>
       <td>{registration.phoneNumber}</td>
       <td>{registration.paymentStatus}</td>
-      <td><img src='/uploads/PaymentScreenshot-1667586632972.PNG'/></td>
+      <td><img src={registration.paymentFile}/></td>
     </tr>
         );
     })
