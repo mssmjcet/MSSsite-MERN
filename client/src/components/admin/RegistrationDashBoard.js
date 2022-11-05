@@ -94,7 +94,7 @@ const RegistrationDashBoard=()=>{
       <td>{registration.emailId}</td>
       <td>{registration.phoneNumber}</td>
       <td>{registration.paymentStatus}</td>
-      <td><img src=__dirname,'/uploads/PaymentScreenshot-1667586632972.PNG'/></td>
+      <td><img src='/uploads/PaymentScreenshot-1667586632972.PNG'/></td>
     </tr>
         );
     })
