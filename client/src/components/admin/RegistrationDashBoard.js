@@ -94,7 +94,7 @@ const RegistrationDashBoard=()=>{
       <td>{registration.emailId}</td>
       <td>{registration.phoneNumber}</td>
       <td>{registration.paymentStatus}</td>
-      <td><img src={registration.paymentFile}/></td>
+      <td><img src={"/images/"+registration.paymentFile}/></td>
     </tr>
         );
     })
