@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/123quadri/MSSsite-MERN/issues"
   },
-  "homepage": "https://github.com/123quadri/MSSsite-MERN#readme"
+  "homepage": "https://github.com/123quadri/MSSsite-MERN#readme",
+  "engines": {
+    "node": "^18.12.0"
+  }
 }
