@@ -57,6 +57,6 @@ app.use(notFound);
 
 // addNewRegistration();
 
-app.listen(3000,() =>{
-    console.log("server runnig at port 3000");
+app.listen(PORT,() =>{
+    console.log(`server running at port ${PORT}`);
 });
