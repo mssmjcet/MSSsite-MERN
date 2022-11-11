@@ -35,7 +35,7 @@ const Home=()=>{
         </div>--> */}
 
 
-<nav className="navbar navbar-inverse "  style="background-color: transparent;">
+<nav className="navbar navbar-inverse "  style={{backgroundColor: "transparent"}}>
   <div className="container-fluid">
     <div className="navbar-header">
       <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -48,13 +48,13 @@ const Home=()=>{
     </div>
     <div className="collapse navbar-collapse" id="myNavbar">
       <ul className="nav navbar-nav navbar-right">
-        <li className="active"><a style="color: white;"href="index.html"><i className="fa fa-home"></i>  HOME</a></li>
-        <li ><a style="color: white;" href="projects.html">PROJECTS</a></li>
-        <li ><a style="color: white;"href="events.html">EVENTS</a></li>
-        <li ><a style="color: white;" href="hack.html">HACKATHON</a></li>
-        <li ><a style="color: white;" href="media.html">MEDIA</a></li>
-     <li ><a style="color: white;" href="msslive.html">MSS LIVE</a></li> 
-         <li className="dropdown"><a style="color: white;" className="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT US<span className="caret"></span></a>
+        <li className="active"><a style={{color: "white"}} href="index.html"><i className="fa fa-home"></i>  HOME</a></li>
+        <li ><a style={{color: "white"}} href="projects.html">PROJECTS</a></li>
+        <li ><a style={{color: "white"}}href="events.html">EVENTS</a></li>
+        <li ><a style={{color: "white"}} href="hack.html">HACKATHON</a></li>
+        <li ><a style={{color: "white"}} href="media.html">MEDIA</a></li>
+     <li ><a style={{color: "white"}} href="msslive.html">MSS LIVE</a></li> 
+         <li className="dropdown"><a style={{color: "white"}} className="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT US<span className="caret"></span></a>
         <ul className="dropdown-menu">
           <li><a href="about.html">INFO</a></li>
           <li><a href="team.html">TEAM</a></li>
@@ -86,25 +86,25 @@ const Home=()=>{
     {/* <!-- Wrapper for slides --> */}
     <div className="carousel-inner">
       <div className="item active">
-        <img src="slider/s1.jpeg" style="width:100%;"/>
+        <img src="slider/s1.jpeg" style={{width:"100%"}}/>
       </div>
 
       <div className="item">
-        <img src="slider/s (2).jpeg"  style="width:100%;"/>
+        <img src="slider/s (2).jpeg"  style={{width:"100%"}}/>
       </div>
     
       <div className="item">
-        <img src="slider/s (3).jpeg" style="width:100%;"/>
+        <img src="slider/s (3).jpeg" style={{width:"100%"}}/>
       </div>
   
 
     
       <div className="item">
-        <img src="slider/s (4).jpeg" style="width:100%;"/>
+        <img src="slider/s (4).jpeg" style={{width:"100%"}}/>
       </div>
 
       <div className="item">
-        <img src="slider/s (5).jpeg" style="width:100%;"/>
+        <img src="slider/s (5).jpeg" style={{width:"100%"}}/>
       </div>
     
      
@@ -181,8 +181,8 @@ const Home=()=>{
   </div>
 </div>
 
-<div style="color: white;background-color:transparent;text-align:center;padding:50px 80px;text-align: justify;">
-  <h3 style="text-align:center;">TO BE LAUNCHED SOON....</h3>
+<div style={{color: "white",backgroundColor:"transparent",textAlign:"center",padding:"50px 80px",textAlign: "justify"}}>
+  <h3 style={{textAlign:"center"}}>TO BE LAUNCHED SOON....</h3>
  
 </div>
 
@@ -275,12 +275,12 @@ const Home=()=>{
 
 <div className="bg-2">
   <div className="caption">
-  <span className="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">DIGITALLY YOURS</span>
+  <span className="border" style={{backgroundColor:"transparent",fontSize:"25px",color: "#f7f7f7"}}>DIGITALLY YOURS</span>
   </div>
 </div>
 
-<div style="position:relative;">
-  <div style="color:white;background-color:grey;text-align:center;padding:50px 80px;text-align: justify;">
+<div style={{position:"relative"}}>
+  <div style={{color:"white",backgroundColor:"grey",textAlign:"center",padding:"50px 80px",textAlign: "justify"}}>
   <p align="center">"Every once in a while,a new technology,an old problem and a big idea turn into an innovation..." </p>
   </div>
 </div>

@@ -7,7 +7,7 @@ var multer = require('multer');
 var upload = multer({
   storage:multer.diskStorage({
     destination:(req,file,cb)=>{
-      cb(null,path.join(__dirname,'./../../uploads'));
+      cb(null,path.join(__dirname,'./../../build/images'));
     },
     filename:function(req,file,callback){
       callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))

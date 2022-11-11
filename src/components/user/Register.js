@@ -11,10 +11,11 @@ const Register=()=>{
     const [paymentScreenshot,setPaymentScreenshot]=useState({preview:'',data:''});
     const [paymentStatus,setPaymentStatus]=useState('');
     const [status,setStatus]=useState('');
-    
+    const [loading,setLoading]=useState(false);
     
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true);
         let formData = new FormData();
         formData.append('Name',name);
         formData.append('RollNo',rollNo);
@@ -27,8 +28,11 @@ const Register=()=>{
           method: 'POST',
           body: formData,
         })
-        if (response) setStatus(response.statusText)
+        .then((data)=>data.json())
+        .then((data)=>setStatus(data.message))
+        setLoading(false);
       }
+
       const handleFileChange = (e) => {
         const img = {
           preview: URL.createObjectURL(e.target.files[0]),
@@ -108,9 +112,12 @@ const Register=()=>{
     <div className="form-group">
         <button type="submit" className="btn btn-block register">Register Now!</button>
     </div>
-
+    { loading && <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>}
+    {status && <div class="text-center bg-info">{status}</div>}
 </form>
-{status && <h4>{status}</h4>}
+
 </div>
 
 </div>

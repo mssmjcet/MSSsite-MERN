@@ -37,6 +37,11 @@ const addEventRegistration =asyncHandler(async(req,res) => {
 
     console.log(new_Registration);
     console.log("reached");
+    res.json({
+      status:200,
+      message:"registration successful",
+    });
+    
 });
 
 

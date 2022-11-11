@@ -36,7 +36,7 @@ app.use(morgan('dev'));
 // app.use(upload.array());
 // app.use(express.static('public'))
 
-app.use(express.static(path.resolve(__dirname,'../client/build')));
+app.use(express.static(path.resolve(__dirname,'../build')));
 
 app.get("/api",(req,res) =>{
     res.json({ message: "Hello from server!"});
@@ -44,7 +44,7 @@ app.get("/api",(req,res) =>{
 app.use('/api/users',userRoutes);
 app.use('/api/admin',adminRoutes);
 app.get('*', function(req, res) {
-    res.sendFile('index.html', {root: path.join(__dirname, '../client/build/')});
+    res.sendFile('index.html', {root: path.join(__dirname, '../build/')});
   });
 
 app.use((error, req, res, next) => {
@@ -57,6 +57,6 @@ app.use(notFound);
 
 // addNewRegistration();
 
-app.listen(3000,() =>{
-    console.log("server runnig at port 3000");
+app.listen(PORT,() =>{
+    console.log(`server runnig at port ${PORT}`);
 });
