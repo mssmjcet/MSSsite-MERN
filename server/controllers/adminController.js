@@ -30,7 +30,27 @@ const getRegistrationsWithEventId=(req,res)=>{
 
 }
 
+const deleteParticularRegistration = (req,res)=>{
+  Registration.deleteOne({_id:req.body.registrationId},function(err){
+    if(err){
+      console.log(err);
+    }
+  })
+}
+
+const deleteAllRegistrationWithEventId = (req,res)=>{
+
+  Registration.deleteMany({ eventID: req.body.eventId }, function(err, result) {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+}
+
 module.exports = {
   addNewRegistration,
-  getRegistrationsWithEventId
+  getRegistrationsWithEventId,
+  deleteParticularRegistration,
+  deleteAllRegistrationWithEventId
 }
