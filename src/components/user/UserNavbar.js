@@ -1,4 +1,4 @@
-const Navbar=()=>{
+const UserNavbar=()=>{
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
   <a className="navbar-brand" href="#">MSS MJCET</a>
@@ -15,4 +15,4 @@ const Navbar=()=>{
 </nav>
     );
 }
-export default Navbar;
+export default UserNavbar;
