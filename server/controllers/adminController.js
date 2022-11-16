@@ -16,7 +16,7 @@ const addNewRegistration=()=>{
 const getRegistrationsWithEventId=(req,res)=>{
 
 
-   Registration.find({eventID:1},function(err,registrations){
+   Registration.find({eventID:req.params.eventId},function(err,registrations){
      if(registrations)
      {
        res.json({
