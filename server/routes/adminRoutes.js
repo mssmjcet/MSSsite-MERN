@@ -1,8 +1,8 @@
 const express=require("express");
-const {deleteParticularRegistration}=require("../controllers/adminController");
-const {deleteAllRegistrationWithEventId}=require("../controllers/adminController");
+const {deleteParticularRegistration}=require("../controllers/RegistrationController");
+const {deleteAllRegistrationWithEventId}=require("../controllers/RegistrationController");
 
-const {getRegistrationsWithEventId}=require("../controllers/adminController");
+const {getRegistrationsWithEventId}=require("../controllers/RegistrationController");
 
 const router=express.Router();
 router.route('/getRegistrationInfo').post(getRegistrationsWithEventId);
