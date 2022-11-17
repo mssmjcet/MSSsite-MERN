@@ -1,17 +1,34 @@
 
 const Registration = require("./../models/registrationSchema");
-const addNewRegistration=()=>{
+const asyncHandler=require('express-async-handler');
+var multer = require('multer');
+
+
+const addEventRegistration =asyncHandler(async(req,res) => {
+
+    let filename='Nil';
+    if(req.file && req.file.filename) filename=req.file.filename;
 
   const new_Registration = new Registration({
-    eventID:1,
-    eventName:"imagine hack",
-    nameOfParticipant:"Quadri",
-    emailId:"syed.moh09@gmail.com",
-    phoneNumber:9949655223,
-    rollNumber:160420733654,
+    eventID:req.body.EventId,
+    // eventName:req.body.Name,
+    nameOfParticipant:req.body.Name,
+    emailId:req.body.EmailId,
+    phoneNumber:req.body.PhoneNo,
+    rollNumber:req.body.RollNo,
+    paymentStatus:req.body.PaymentStatus,
+    paymentFile:filename,
   });
+
   new_Registration.save();
-};
+    console.log(new_Registration);
+    console.log("reached");
+    res.json({
+      status:200,
+      message:"registration successful",
+    });
+
+});
 
 const getRegistrationsWithEventId=(req,res)=>{
 
@@ -24,7 +41,6 @@ const getRegistrationsWithEventId=(req,res)=>{
        })
      }
    })
-
 }
 
 const deleteParticularRegistration = (req,res)=>{
@@ -62,9 +78,12 @@ const deleteAllRegistrationWithEventId = (req,res)=>{
 
 }
 
+
+
+
 module.exports = {
-  addNewRegistration,
   getRegistrationsWithEventId,
   deleteParticularRegistration,
-  deleteAllRegistrationWithEventId
+  deleteAllRegistrationWithEventId,
+  addEventRegistration
 }
