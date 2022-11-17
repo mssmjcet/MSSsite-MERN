@@ -37,28 +37,42 @@ const getRegistrationsWithEventId=(req,res)=>{
      if(registrations)
      {
        res.json({
-         'data':registrations,
+         'regData':registrations,
        })
      }
-     // res.render("Registration",{
-     //   Allregistrations:registrations,
-     // })
    })
 }
 
 const deleteParticularRegistration = (req,res)=>{
-  Registration.deleteOne({_id:req.body.registrationId},function(err){
+  Registration.deleteOne({_id:req.params.registrationId},function(err){
     if(err){
       console.log(err);
+      res.json({
+        message:err,
+      });
+    }
+    else
+    {
+      res.json({
+        message:"Delete Successful",
+      });
     }
   })
 }
 
 const deleteAllRegistrationWithEventId = (req,res)=>{
 
-  Registration.deleteMany({ eventID: req.body.eventId }, function(err, result) {
+  Registration.deleteMany({ eventID: req.params.eventId }, function(err, result) {
     if (err) {
       console.log(err);
+      res.json({
+        message:err,
+      });
+    }
+    else{
+      res.json({
+        message:"Delete all registrations successful",
+      })
     }
   });
 

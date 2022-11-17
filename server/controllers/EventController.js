@@ -1,7 +1,7 @@
-const Event = require("./../models/EventsModel");
+const Event = require("./../models/EventsSchema");
 
 
-const addNewEvent=()=>{
+const addNewEvent=(req,res)=>{
   const new_Event = new Event({
     Name:req.body.Name,
     Description:req.body.Description,

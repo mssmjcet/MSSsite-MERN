@@ -1,6 +1,9 @@
+import UserNavbar from "./UserNavbar";
+
 const Teams=()=>{
     return(
-        <div>
+        <div className="container">
+            <UserNavbar/>
             <h1>Teams Page</h1>
         </div>
     );

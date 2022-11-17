@@ -1,7 +1,11 @@
+import AdminNavbar from "./AdminNavbar";
+
 const ProjectsDashBoard=()=>{
     return(
-    <div>
+    <div className="continer-fluid">
+        <AdminNavbar/>
         <h1>Projects Dashboard</h1>
-    </div>);
+    </div>
+    );
 }
 export default ProjectsDashBoard;

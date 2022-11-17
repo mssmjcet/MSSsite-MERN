@@ -1,6 +1,9 @@
+import UserNavbar from "./UserNavbar";
+
 const Home=()=>{
     return(
-        <div>
+        <div className="container">
+          <UserNavbar/>
           <h1>Home page</h1>
         </div>
     )

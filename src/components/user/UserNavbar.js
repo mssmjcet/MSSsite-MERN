@@ -7,9 +7,11 @@ const UserNavbar=()=>{
   </button>
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <a className="nav-item nav-link" href="/admin/home">Home </a>
-      <a className="nav-item nav-link active" href="#">Registrations<span className="sr-only">(current)</span></a>
-      <a className="nav-item nav-link" href="/admin/eventsDashboard">Events</a>
+      <a className="nav-item nav-link active" href="/">Home </a>
+      <a className="nav-item nav-link" href="/events">Events</a>
+      <a className="nav-item nav-link" href="/projects">Projects</a>
+      <a className="nav-item nav-link" href="/teams">Teams</a>
+      <a className="nav-item nav-link" href="/register">Register</a>
     </div>
   </div>
 </nav>
