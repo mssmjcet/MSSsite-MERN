@@ -11,7 +11,12 @@ import { Route,Router, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Home from "./components/user/Home";
 import Register from "./components/user/Register";
-import RegistrationDashBoard from "./components/admin/RegistrationDashBoard";
+import Projects from "./components/user/Projects";
+import Events from './components/user/Events';
+import Teams from "./components/user/Teams";
+import RegistrationDashboard from "./components/admin/RegistrationDashboard";
+import EventsDashboard from "./components/admin/EventsDashboard";
+import ProjectsDashBoard from './components/admin/ProjectsDashboard';
 
 function App() {
   return (
@@ -19,7 +24,13 @@ function App() {
 <Routes>
   <Route path = "/" element = {<Home/>} exact />
   <Route path ="/registerEvent" element={<Register/>} exact/>
-  <Route path="/admin/registrationDashboard" element={<RegistrationDashBoard/>} exact />
+  <Route path ="/projects" element={<Projects/>} exact/>
+  <Route path="/teams" element={<Teams/>}  exact/>
+  <Route path="/events" element={<Events/>}  exact/>
+
+  <Route path="/admin/registrationDashboard" element={<RegistrationDashboard/>} exact />
+  <Route path="/admin/eventsDashboard" element={<EventsDashboard/>} exact />
+  <Route path="/admin/projectsDashboard" element={<ProjectsDashBoard/>} exact />
   </Routes>
  </BrowserRouter>
   );

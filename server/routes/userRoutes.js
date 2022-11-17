@@ -16,7 +16,16 @@ var upload = multer({
 
 });
 
+//registration routes
+
 router.post("/registerEvent",upload.single("PaymentScreenshot"),addEventRegistration);
 
+//event routes
+
+router.route('/getEventInfo').get();
+router.route('/getEventInfoWithState').get()
+
+//project routes
+router.route('/getProjectInfo').get();
 
 module.exports = router;

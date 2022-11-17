@@ -1,7 +1,7 @@
-import Navbar from "./Navbar";
+import AdminNavbar from "./AdminNavbar";
 import {useState} from "react";
 
-const RegistrationDashBoard=()=>{
+const RegistrationDashboard=()=>{
     const [eventId,setEventId]=useState(0);
     const [eventData,setEventData]=useState([
         {
@@ -26,25 +26,14 @@ const RegistrationDashBoard=()=>{
     ]);
 
     const fetchRegistrationsForEvent=(e)=>{
-        setEventId(e.target.value);
+        const newEventId=e.target.value;
+        setEventId(newEventId);
        // fetch('/api/users/getAllEvents/'+e.target.value).then((res)=>res.json())
     //.then((data)=>setEventData(data))
 
     //fetch tests
-    fetch('/api/admin/getRegistrationInfo',{
-
-    // Adding method type
-    method: "POST",
-
-    // Adding body or contents to send
-    body: JSON.stringify({
-        'eventId':eventId,
-    }),
-
-    // Adding headers to the request
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
+    fetch('/api/admin/getRegistrationInfo/'+newEventId,{
+    method: "GET",
 }).then((res) => res.json())
   .then((data)=> {
      setRegistrationData(data.data);
@@ -56,7 +45,7 @@ const RegistrationDashBoard=()=>{
     }
     return(
         <div className="container-fluid">
-            <Navbar/>
+            <AdminNavbar/>
             <div className="row">
                 <div className=" my-5 col-6 text-center mx-auto">
                     <form>
@@ -107,4 +96,4 @@ const RegistrationDashBoard=()=>{
     );
 }
 
-export default RegistrationDashBoard;
+export default RegistrationDashboard;
