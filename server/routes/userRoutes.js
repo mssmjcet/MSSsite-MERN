@@ -1,6 +1,6 @@
 const path=require('path');
 const express=require("express");
-const { addEventRegistration} = require("../controllers/userController");
+const { addEventRegistration} = require("../controllers/RegistrationController");
 const router=express.Router();
 var multer = require('multer');
 
