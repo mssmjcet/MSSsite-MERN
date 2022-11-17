@@ -1,6 +1,7 @@
 import './../../assets/style.css';
 
 import { useState } from 'react';
+import UserNavbar from './UserNavbar';
 
 const Register=()=>{
     const [name,setName]=useState("");
@@ -24,7 +25,7 @@ const Register=()=>{
         formData.append('EventId',eventId);
         formData.append('PaymentStatus',paymentStatus);
         formData.append('PaymentScreenshot', paymentScreenshot.data)
-        const response = await fetch('/api/users/registerEvent', {
+        const response = await fetch('/api/users/Registration', {
           method: 'POST',
           body: formData,
         })
@@ -57,7 +58,7 @@ const Register=()=>{
     return(
 
         <div id='registerForm'>
-           
+           <UserNavbar/>
         {/* <div className="form-icon">
         <span><i className="icon icon-user"></i></span>
     </div> */}

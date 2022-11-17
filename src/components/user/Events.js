@@ -1,6 +1,9 @@
+import UserNavbar from "./UserNavbar";
+
 const Events=()=>{
     return(
-        <div>
+        <div className="container">
+            <UserNavbar/>
             <h1>Events</h1>
         </div>
     );

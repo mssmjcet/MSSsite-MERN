@@ -17,18 +17,22 @@ import Teams from "./components/user/Teams";
 import RegistrationDashboard from "./components/admin/RegistrationDashboard";
 import EventsDashboard from "./components/admin/EventsDashboard";
 import ProjectsDashBoard from './components/admin/ProjectsDashboard';
+import AdminHome from './components/admin/AdminHome';
+import AdminLogin from './components/admin/AdminLogin';
 
 function App() {
   return (
     <BrowserRouter>
 <Routes>
   <Route path = "/" element = {<Home/>} exact />
-  <Route path ="/registerEvent" element={<Register/>} exact/>
+  <Route path ="/register" element={<Register/>} exact/>
   <Route path ="/projects" element={<Projects/>} exact/>
   <Route path="/teams" element={<Teams/>}  exact/>
   <Route path="/events" element={<Events/>}  exact/>
 
-  <Route path="/admin/registrationDashboard" element={<RegistrationDashboard/>} exact />
+  <Route path="/admin/home" element={<AdminHome/>} exact/>
+  <Route path="/admin/login" element={<AdminLogin/>} exact />
+  <Route path="/admin/registrationsDashboard" element={<RegistrationDashboard/>} exact />
   <Route path="/admin/eventsDashboard" element={<EventsDashboard/>} exact />
   <Route path="/admin/projectsDashboard" element={<ProjectsDashBoard/>} exact />
   </Routes>

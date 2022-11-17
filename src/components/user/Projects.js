@@ -1,6 +1,9 @@
+import UserNavbar from "./UserNavbar";
+
 const Projects=()=>{
     return(
-        <div>
+        <div className="container">
+            <UserNavbar/>
             <h1>Projects Page</h1>
         </div>
     );

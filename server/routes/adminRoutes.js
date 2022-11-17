@@ -6,26 +6,26 @@ const {getRegistrationsWithEventId}=require("../controllers/adminController");
 
 const router=express.Router();
 //registration routes
-router.route('/getRegistrationInfo/:eventId').get(getRegistrationsWithEventId);
-router.route('/addRegistrationRecord').post();
-router.route('/updateRegistrationInfo').put();
-router.route('/deleteRegistrationRecord').delete(deleteParticularRegistration);
-router.route('/deleteEventRegistration').delete(deleteAllRegistrationWithEventId);
-router.route('/changePaymentStatusOfRegistration').put();
+router.route('/Registration/:eventId').get(getRegistrationsWithEventId);
+router.route('/Registration').post();
+router.route('/Registration').put();
+router.route('/Registration/:registrationId').delete(deleteParticularRegistration);
+router.route('/Registration/Event/:eventId').delete(deleteAllRegistrationWithEventId);
+router.route('/Registration/paymentStatus').put();
 
 //event routes
 
-router.route('/getEventInfo').get();
-router.route('/getEventInfoWithState').get()
-router.route('/createNewEvent').post();
-router.route('/deleteEventRecord').delete();
-router.route('/updateEventInfo').put()
-router.route('/changeEventStatus').put()
+router.route('/Event').get();
+router.route('/Event/:state').get()
+router.route('/Event').post();
+router.route('/Event/:eventId').delete();
+router.route('/Event').put()
+router.route('/Event/changeStatus').put()
 
 //project routes
-router.route('/getProjectInfo').get();
-router.route('/createNewProject').post();
-router.route('/updateProjectInfo').put();
-router.route('/deleteProjectInfo').delete();
+router.route('/Project').get();
+router.route('/Project').post();
+router.route('/Project').put();
+router.route('/Project/:projectId').delete();
 
 module.exports = router;

@@ -8,8 +8,9 @@ const AdminNavbar=()=>{
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
       <a className="nav-item nav-link" href="/admin/home">Home </a>
-      <a className="nav-item nav-link active" href="#">Registrations<span className="sr-only">(current)</span></a>
+      <a className="nav-item nav-link active" href="/admin/registrationsDashboard">Registrations<span className="sr-only">(current)</span></a>
       <a className="nav-item nav-link" href="/admin/eventsDashboard">Events</a>
+      <a className="nav-item nav-link" href="/admin/projectsDashboard">Projects</a>
     </div>
   </div>
 </nav>
