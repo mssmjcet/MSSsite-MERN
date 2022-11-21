@@ -17,17 +17,31 @@ const addNewEvent=(req,res)=>{
   new_Event.save();
 };
 
+const getAllEvents=(req,res)=>{
+Event.find({},function(err,events){
+  if(err)
+  {
+    res.json({
+      message:err,
+    });
+  }
+  else{
+    res.json({
+      message:"success",
+      eventsData:events,
+    });
+  }
+})
+}
+
 const getEventWithId=(req,res)=>{
    Event.find({_id:req.params.eventId},function(err,events){
      if(events)
      {
        res.json({
          'data':events,
-       })
+       });
      }
-     // res.render("Registration",{
-     //   Allregistrations:registrations,
-     // })
    })
 }
 
@@ -35,6 +49,15 @@ const deleteParticularEvent = (req,res)=>{
   Event.deleteOne({_id:req.params.eventId },function(err){
     if(err){
       console.log(err);
+      res.json({
+        message:err,
+      });
+    }
+    else
+    {
+      res.json({
+        message:"delete successful",
+      });
     }
   })
 }
@@ -64,5 +87,6 @@ module.exports = {
   addNewEvent,
   updateParticularEvent,
   deleteParticularEvent,
-  getEventWithId
+  getEventWithId,
+  getAllEvents
 }

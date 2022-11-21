@@ -1,5 +1,5 @@
 import AdminNavbar from "./AdminNavbar";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const RegistrationDashboard=()=>{
    
@@ -25,10 +25,19 @@ const RegistrationDashboard=()=>{
         }
     ]);
 
-
+    useEffect(()=>{
+        fetchEventsData();
+    },[]);
+    
     const fetchEventsData=()=>{
-        //fetch('/api/admin/Event').then((res)=>res.json())
-       // .then((data)=>setEventData(data.eventData))
+        fetch('/api/admin/Event').then((res)=>res.json())
+        .then((data)=>{
+            if(data.eventData)
+            setEventData(data.eventData);
+            console.log(data);
+            console.log(data.eventData);
+        })
+        console.log("fetched");
     }
     const fetchRegistrationsForEvent=(e)=>{
         const newEventId=e.target.value;
@@ -52,7 +61,7 @@ const RegistrationDashboard=()=>{
         })
         .then((res) => res.json())
         .then((data)=> {
-            prompt(data.message);
+            alert(data.message);
             console.log(data);
            //setLoading(false);
         })
@@ -63,7 +72,7 @@ const RegistrationDashboard=()=>{
         })
         .then((res) => res.json())
         .then((data)=> {
-            prompt(data.message);
+            alert(data.message);
             console.log(data);
            //setLoading(false);
         })
@@ -78,7 +87,7 @@ const RegistrationDashboard=()=>{
     const [status,setStatus]=useState('');
     const [loading,setLoading]=useState(false);
     
-    const handleSubmit = async (e) => {
+    const createNewRegistration = async (e) => {
         e.preventDefault()
         setLoading(true);
         let formData = new FormData();
@@ -118,26 +127,26 @@ const RegistrationDashboard=()=>{
         setLoading(false);
       }
 
-    //   const handleFileChange = (e) => {
-    //     const img = {
-    //       preview: URL.createObjectURL(e.target.files[0]),
-    //       data: e.target.files[0],
-    //     }
+      const handleFileChange = (e) => {
+        const img = {
+          preview: URL.createObjectURL(e.target.files[0]),
+          data: e.target.files[0],
+        }
         
-    //     setPaymentScreenshot(img)
-    //   }
-    //   const paymentStatusHandler=(e)=>{
-    //     setPaymentStatus(e.target.value);
-    //     if(e.target.value==='No')
-    //     {
-    //         const img={
-    //             preview:'',
-    //             data:'',
-    //         };
-    //         setPaymentScreenshot(img);
-    //         console.log(paymentScreenshot);
-    //     }
-    //   }
+        setPaymentScreenshot(img)
+      }
+      const paymentStatusHandler=(e)=>{
+        setPaymentStatus(e.target.value);
+        if(e.target.value==='No')
+        {
+            const img={
+                preview:'',
+                data:'',
+            };
+            setPaymentScreenshot(img);
+            console.log(paymentScreenshot);
+        }
+      }
 
 
     return(
@@ -157,48 +166,54 @@ const RegistrationDashboard=()=>{
                     <form encType="multipart/form-data">
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" className="form-control" placeholder="Enter participant name" aria-label="participant name" aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setName(e.target.value)} placeholder="Enter participant name" aria-label="participant name" aria-describedby="basic-addon1"/>
                         </div>
 
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon2">Email ID</span>
-                        <input type="email" className="form-control" placeholder="xyz@example.com" aria-label="email Id" aria-describedby="basic-addon2"/>
+                        <input type="email" className="form-control" onChange={(e)=>setEmailId(e.target.value)} placeholder="xyz@example.com" aria-label="email Id" aria-describedby="basic-addon2"/>
                         </div>
                         
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Roll No.</span>
-                        <input type="text" className="form-control" placeholder="Enter Roll No" aria-label="participant roll no." aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setRollNo(e.target.value)} placeholder="Enter Roll No" aria-label="participant roll no." aria-describedby="basic-addon1"/>
                         </div>
 
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Phone No.</span>
-                        <input type="text" className="form-control" placeholder="Enter Phone No." aria-label="phone no." aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setPhoneNo(e.target.value)} placeholder="Enter Phone No." aria-label="phone no." aria-describedby="basic-addon1"/>
                         </div>
 
                         
-                        <label className="form-control">Payment Status</label>
+                        <label className="form-control form-label">Payment Status</label>
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes"/>
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler}/>
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No"/>
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler}/>
                         <label class="form-check-label" for="inlineRadio2">No</label>
                         </div>
                         
-
+                        <br/>
                         <label for="basic-url" className="form-label">Payment Url</label>
-
-                        <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Payment Screenshot</label>
-                        <input class="form-control" type="file" id="formFile"/>
-                        </div>
-
+                        <a href="#" className="link">dummy</a>
+                        {paymentStatus==='Yes' &&
+                            <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Payment Screenshot</label>
+                            <input class="form-control" type="file" id="formFile" onChange={handleFileChange}/>
+                            </div>
+                        }
+                        {paymentScreenshot.preview!=='' && <img className="img-fluid" src={paymentScreenshot.preview} />}
                     </form>
                 </div>
                 <div className="modal-footer">
+                { loading && <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>}
+                {status && <div class="text-center bg-info">{status}</div>}
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Create</button>
+                    <button type="button" className="btn btn-primary" onClick={createNewRegistration}>Create</button>
                 </div>
                 </div>
             </div>
@@ -206,9 +221,12 @@ const RegistrationDashboard=()=>{
             
             <AdminNavbar/>
             <div className="row">
-                <div className="col-4">
+                <div className="col-6">
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#newRegistration">
-                        Add
+                        Add new Registration for Current Event
+                    </button>
+                    <button type="button" className="btn btn-success" onClick={deleteRegistrationsForEvent}>
+                        Delete All Registrations for Current Event
                     </button>
                 </div>
             </div>

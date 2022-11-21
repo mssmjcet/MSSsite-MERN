@@ -4,7 +4,12 @@ const EventsDashboard=()=>{
     return(
     <div className="container-fluid">
         <AdminNavbar/>
-        <h1>Events Dashboard</h1>
+        <h1 className="text-center bg-primary">Events Dashboard</h1>
+        <div className="flex flex-wrap">
+            <div className="flex-item"></div>
+            <div className="flex-item"></div>
+        </div>
+
     </div>
 );
 }
