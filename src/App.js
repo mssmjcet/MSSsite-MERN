@@ -31,7 +31,7 @@ function App() {
   <Route path="/events" element={<Events/>}  exact/>
 
   <Route path="/admin/home" element={<AdminHome/>} exact/>
-  <Route path="/admin/login" element={<AdminLogin/>} exact />
+  <Route path="/admin/log in" element={<AdminLogin/>} exact />
   <Route path="/admin/registrationsDashboard" element={<RegistrationDashboard/>} exact />
   <Route path="/admin/eventsDashboard" element={<EventsDashboard/>} exact />
   <Route path="/admin/projectsDashboard" element={<ProjectsDashBoard/>} exact />
@@ -64,3 +64,4 @@ export default App;
 // }
 
 
+// "start": "node server/index.js",
