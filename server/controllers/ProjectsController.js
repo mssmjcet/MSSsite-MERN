@@ -29,13 +29,22 @@ const getProjectWithId=(req,res)=>{
      if(projects)
      {
        res.json({
-         'data':events,
+         'projectsData':projects,
        })
      }
-     // res.render("Registration",{
-     //   Allregistrations:registrations,
-     // })
    })
+}
+
+
+const getAllProjects=(req,res)=>{
+  Project.find((err,projects)=>{
+    if(projects)
+    {
+      res.json({
+        'projectsData':projects,
+      })
+    }
+  });
 }
 
 const deleteParticularProject = (req,res)=>{
@@ -43,6 +52,9 @@ const deleteParticularProject = (req,res)=>{
     if(err){
       console.log(err);
     }
+  })
+  res.json({
+    "message":"deleted successfully"
   })
 }
 
@@ -72,6 +84,9 @@ const updateParticularProject = (req,res) =>{
     })
     .catch(err => console.error(`Failed to add review: ${err}`));
   }
+  res.json({
+    "message":"sucessfully updated"
+  })
 }
 
 
@@ -81,5 +96,6 @@ module.exports = {
   addNewProject,
   getProjectWithId,
   deleteParticularProject,
-  updateParticularProject
+  updateParticularProject,
+  getAllProjects
 }

@@ -82,6 +82,7 @@ const deleteParticularEvent =expressAsyncHandler (async(req,res)=>{
 
 const updateParticularEvent =expressAsyncHandler(async(req,res) =>{
   let filename='Nil';
+  console.log(req.body.Name);
   if(req.file && req.file.filename)
   {
     filename=req.file.filename;
@@ -95,11 +96,11 @@ const updateParticularEvent =expressAsyncHandler(async(req,res) =>{
     Duration:req.body.Duration,
     StateOfEvent:req.body.StateOfEvent,
     TypeOfEvent:req.body.TypeOfEvent,
-    EventImage:req.body.EventImage,
-    PaymentNumber:req.body.PaymentNumber,}},function(err,oldReg){
-      if(fs.existsSync('./build/images/'+oldReg.paymentFile))
+    EventImage:filename,
+    PaymentNumber:req.body.PaymentNumber,}},function(err,oldEvt){
+      if(fs.existsSync('./build/images/'+oldEvt.EventImage))
         {
-        fs.unlink('./build/images/'+oldReg.paymentFile, function (err) {
+        fs.unlink('./build/images/'+oldEvt.EventImage, function (err) {
           if (err) throw err;
           // if no error, file has been deleted successfully
           console.log('File deleted!');
@@ -121,9 +122,11 @@ else{
     Duration:req.body.Duration,
     StateOfEvent:req.body.StateOfEvent,
     TypeOfEvent:req.body.TypeOfEvent,
-    EventImage:req.body.EventImage,
     PaymentNumber:req.body.PaymentNumber,}},function(err,event){
         
+    });
+    res.json({
+      message:"Event updated successfully",
     });
 }
 });

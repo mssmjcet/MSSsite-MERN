@@ -1,7 +1,8 @@
 import './../../assets/style.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserNavbar from './UserNavbar';
+import UserNavbar2 from './UserNavbar2';
 
 const Register=()=>{
     const [name,setName]=useState("");
@@ -14,6 +15,9 @@ const Register=()=>{
     const [status,setStatus]=useState('');
     const [loading,setLoading]=useState(false);
     
+    useEffect(()=>{
+        
+    },[])
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true);
@@ -58,7 +62,7 @@ const Register=()=>{
     return(
 
         <div id='registerForm'>
-           <UserNavbar/>
+           <UserNavbar2/>
         {/* <div className="form-icon">
         <span><i className="icon icon-user"></i></span>
     </div> */}
