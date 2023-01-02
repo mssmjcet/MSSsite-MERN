@@ -1,0 +1,67 @@
+.events.container-fluid{
+	background-color: rgb(225, 225, 225);
+} 
+.events.work-shops-heading-div1{
+    margin-top: 1.5%;
+    text-align: center;
+}
+.events.work-shops-heading{
+    color: #3282b8;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif; 
+    font-style: normal;
+    font-size: 3rem;
+}
+.events.know-more-button{
+    
+    background-color: #3282b8;
+}
+.events.know-more-button:hover{
+    background-color: #2e79ab;
+}
+.events.seminars-heading-div1
+{
+    margin-top: 2%;
+    text-align: center;  
+}
+.events.seminars-heading{
+    color: #3282b8;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif; 
+    font-style: normal;
+    font-size: 3rem;
+}
+.events.Webinars-heading-div1{
+    margin-top: 2%;
+    text-align: center; 
+}
+.events.Webinars-heading{
+    color: #3282b8;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif; 
+    font-style: normal;
+    font-size: 3rem;
+}
+.events.Others-heading-div1{
+    margin-top: 2%;
+    text-align: center; 
+}
+.events.Others-heading{
+    color: #3282b8;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+      "Arial", sans-serif; 
+    font-style: normal;
+    font-size: 3rem;
+}

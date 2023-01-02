@@ -9,11 +9,13 @@ const dotenv=require("dotenv");
 var multer = require('multer');
 const connectDB=require("./config/db");
 const morgan=require("morgan");
-
+const fs=require('fs');
 // const {addNewRegistration}=require("./controllers/adminController");
 const bodyParser=require('body-parser');
 
-
+fs.writeFile("./public/jsonFiles/data.json",JSON.stringify({name:"shah",rollno:12345,imgUrl:'logo512.png'}),()=>{
+  console.log('done');
+});
 var upload = multer();
 
 

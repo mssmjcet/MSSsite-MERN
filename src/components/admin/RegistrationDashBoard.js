@@ -1,5 +1,5 @@
 import AdminNavbar from "./AdminNavbar";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const RegistrationDashboard=()=>{
    
@@ -25,10 +25,19 @@ const RegistrationDashboard=()=>{
         }
     ]);
 
-
+    useEffect(()=>{
+        fetchEventsData();
+    },[]);
+    
     const fetchEventsData=()=>{
-        //fetch('/api/admin/Event').then((res)=>res.json())
-       // .then((data)=>setEventData(data.eventData))
+        fetch('/api/admin/Event').then((res)=>res.json())
+        .then((data)=>{
+            if(data.eventData)
+            setEventData(data.eventData);
+            console.log(data);
+            console.log(data.eventData);
+        })
+        console.log("fetched");
     }
     const fetchRegistrationsForEvent=(e)=>{
         const newEventId=e.target.value;
@@ -52,7 +61,7 @@ const RegistrationDashboard=()=>{
         })
         .then((res) => res.json())
         .then((data)=> {
-            prompt(data.message);
+            alert(data.message);
             console.log(data);
            //setLoading(false);
         })
@@ -63,7 +72,7 @@ const RegistrationDashboard=()=>{
         })
         .then((res) => res.json())
         .then((data)=> {
-            prompt(data.message);
+            alert(data.message);
             console.log(data);
            //setLoading(false);
         })
@@ -77,8 +86,9 @@ const RegistrationDashboard=()=>{
     const [paymentStatus,setPaymentStatus]=useState('');
     const [status,setStatus]=useState('');
     const [loading,setLoading]=useState(false);
+    const [regId,setRegId]=useState(-1);
     
-    const handleSubmit = async (e) => {
+    const createNewRegistration = async (e) => {
         e.preventDefault()
         setLoading(true);
         let formData = new FormData();
@@ -102,6 +112,7 @@ const RegistrationDashboard=()=>{
         e.preventDefault()
         setLoading(true);
         let formData = new FormData();
+        formData.append('registrationId',regId)
         formData.append('Name',name);
         formData.append('RollNo',rollNo);
         formData.append('PhoneNo',phoneNo);
@@ -110,7 +121,7 @@ const RegistrationDashboard=()=>{
         formData.append('PaymentStatus',paymentStatus);
         formData.append('PaymentScreenshot', paymentScreenshot.data)
         const response = await fetch('/api/admin/Registration', {
-          method: 'POST',
+          method: 'PUT',
           body: formData,
         })
         .then((data)=>data.json())
@@ -118,34 +129,62 @@ const RegistrationDashboard=()=>{
         setLoading(false);
       }
 
-    //   const handleFileChange = (e) => {
-    //     const img = {
-    //       preview: URL.createObjectURL(e.target.files[0]),
-    //       data: e.target.files[0],
-    //     }
+      const handleFileChange = (e) => {
+        const img = {
+          preview: URL.createObjectURL(e.target.files[0]),
+          data: e.target.files[0],
+        }
         
-    //     setPaymentScreenshot(img)
-    //   }
-    //   const paymentStatusHandler=(e)=>{
-    //     setPaymentStatus(e.target.value);
-    //     if(e.target.value==='No')
-    //     {
-    //         const img={
-    //             preview:'',
-    //             data:'',
-    //         };
-    //         setPaymentScreenshot(img);
-    //         console.log(paymentScreenshot);
-    //     }
-    //   }
-
+        setPaymentScreenshot(img)
+      }
+      const paymentStatusHandler=(e)=>{
+        setPaymentStatus(e.target.value);
+        if(e.target.value==='No')
+        {
+            const img={
+                preview:'',
+                data:'',
+            };
+            setPaymentScreenshot(img);
+            console.log(paymentScreenshot);
+        }
+      }
+      function initializeRegistrationVariables(registrationId)
+      {
+        let regRecord=registrationData.find(reg=>reg._id===registrationId)
+        console.log(regRecord);
+        setRegId(regRecord._id);
+        setName(regRecord.nameOfParticipant);
+        setEmailId(regRecord.emailId);
+        setRollNo(regRecord.rollNumber);
+        setPhoneNo(regRecord.phoneNumber);
+        setPaymentStatus(regRecord.paymentStatus);
+        if(regRecord.paymentFile==='Nil')
+        {
+            const img={
+                preview:'',
+                data:'',
+            };
+            setPaymentScreenshot(img);
+            console.log(paymentScreenshot);
+        }
+        else
+        {
+            const img = {
+                preview: URL.createObjectURL("/images/"+regRecord.paymentFile),
+                data: regRecord.paymentFile,
+              }              
+              setPaymentScreenshot(img)
+        }
+        console.log("initialized successfully");
+      }
 
     return(
         <div className="container-fluid">
                         {/* <!-- Button trigger modal --> */}
            
 
-            {/* <!-- Modal --> */}
+            {/* <!-- Modal- new registration details --> */}
             <div className="modal fade" id="newRegistration" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -157,58 +196,134 @@ const RegistrationDashboard=()=>{
                     <form encType="multipart/form-data">
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" className="form-control" placeholder="Enter participant name" aria-label="participant name" aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setName(e.target.value)} placeholder="Enter participant name" aria-label="participant name" aria-describedby="basic-addon1"/>
                         </div>
 
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon2">Email ID</span>
-                        <input type="email" className="form-control" placeholder="xyz@example.com" aria-label="email Id" aria-describedby="basic-addon2"/>
+                        <input type="email" className="form-control" onChange={(e)=>setEmailId(e.target.value)} placeholder="xyz@example.com" aria-label="email Id" aria-describedby="basic-addon2"/>
                         </div>
                         
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Roll No.</span>
-                        <input type="text" className="form-control" placeholder="Enter Roll No" aria-label="participant roll no." aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setRollNo(e.target.value)} placeholder="Enter Roll No" aria-label="participant roll no." aria-describedby="basic-addon1"/>
                         </div>
 
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Phone No.</span>
-                        <input type="text" className="form-control" placeholder="Enter Phone No." aria-label="phone no." aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" onChange={(e)=>setPhoneNo(e.target.value)} placeholder="Enter Phone No." aria-label="phone no." aria-describedby="basic-addon1"/>
                         </div>
 
                         
-                        <label className="form-control">Payment Status</label>
+                        <label className="form-control form-label">Payment Status</label>
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes"/>
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler}/>
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No"/>
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler}/>
                         <label class="form-check-label" for="inlineRadio2">No</label>
                         </div>
                         
-
+                        <br/>
                         <label for="basic-url" className="form-label">Payment Url</label>
-
-                        <div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Payment Screenshot</label>
-                        <input class="form-control" type="file" id="formFile"/>
-                        </div>
-
+                        <a href="#" className="link">dummy</a>
+                        {paymentStatus==='Yes' &&
+                            <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Payment Screenshot</label>
+                            <input class="form-control" type="file" id="formFile" onChange={handleFileChange}/>
+                            </div>
+                        }
+                        {paymentScreenshot.preview!=='' && <img className="img-fluid" src={paymentScreenshot.preview} />}
                     </form>
                 </div>
                 <div className="modal-footer">
+                { loading && <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>}
+                {status && <div class="text-center bg-info">{status}</div>}
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Create</button>
+                    <button type="button" className="btn btn-primary" onClick={createNewRegistration}>Create</button>
                 </div>
                 </div>
             </div>
             </div>
             
+            {/* <!-- Modal -registration details update--> */}
+            <div className="modal fade" id="updateRegistration" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="staticBackdropLabel">Update Registration Details</h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                    <form encType="multipart/form-data">
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Name</span>
+                        <input type="text" className="form-control" onChange={(e)=>setName(e.target.value)} placeholder="Enter participant name" aria-label="participant name" aria-describedby="basic-addon1" value={name} />
+                        </div>
+
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon2">Email ID</span>
+                        <input type="email" className="form-control" onChange={(e)=>setEmailId(e.target.value)} placeholder="xyz@example.com" aria-label="email Id" aria-describedby="basic-addon2" value={emailId} />
+                        </div>
+                        
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Roll No.</span>
+                        <input type="text" className="form-control" onChange={(e)=>setRollNo(e.target.value)} placeholder="Enter Roll No" aria-label="participant roll no." aria-describedby="basic-addon1" value={rollNo} />
+                        </div>
+
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Phone No.</span>
+                        <input type="text" className="form-control" onChange={(e)=>setPhoneNo(e.target.value)} placeholder="Enter Phone No." aria-label="phone no." aria-describedby="basic-addon1" value={phoneNo} />
+                        </div>
+
+                        
+                        <label className="form-control form-label">Payment Status</label>
+                        <div class="form-check form-check-inline">
+                        {paymentStatus==="Yes" && <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler} checked/>}
+                        {paymentStatus==="No" && <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler}/>}
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        {paymentStatus==="No" && <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler} checked/>}
+                        {paymentStatus==="Yes" && <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler}/>}
+                        <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                        
+                        <br/>
+                        <label for="basic-url" className="form-label">Payment Url</label>
+                        <a href="#" className="link">dummy</a>
+                        {paymentStatus==='Yes' &&
+                            <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Payment Screenshot</label>
+                            <input class="form-control" type="file" id="formFile" onChange={handleFileChange}/>
+                            </div>
+                        }
+                        {paymentScreenshot.preview!=='' && <img className="img-fluid" src={paymentScreenshot.preview} />}
+                    </form>
+                </div>
+                <div className="modal-footer">
+                { loading && <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>}
+                {status && <div class="text-center bg-info">{status}</div>}
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary" onClick={updateRegistrationDetails}>Update</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
             <AdminNavbar/>
             <div className="row">
-                <div className="col-4">
+                <div className="col-6">
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#newRegistration">
-                        Add
+                        Add new Registration for Current Event
+                    </button>
+                    <button type="button" className="btn btn-success" onClick={deleteRegistrationsForEvent}>
+                        Delete All Registrations for Current Event
                     </button>
                 </div>
             </div>
@@ -241,10 +356,10 @@ const RegistrationDashboard=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {registrationData.map((registration)=>{
+                    {registrationData.map((registration,index)=>{
                         return(
                             <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{index+1}</th>
                     <td>{registration.nameOfParticipant}</td>
                     <td>{registration.rollNumber}</td>
                     <td>{registration.emailId}</td>
@@ -252,7 +367,7 @@ const RegistrationDashboard=()=>{
                     <td>{registration.paymentStatus}</td>
                     <td><img src={"/images/"+registration.paymentFile}/></td>
                     <td>
-                        <button className="btn btn-success">Edit</button>
+                        <button className="btn btn-success" onClick={()=>initializeRegistrationVariables(registration._id)} data-bs-toggle="modal" data-bs-target="#updateRegistration">Edit</button>
                         <button className="btn btn-danger" onClick={()=>deleteRegistrationRecord(registration._id)}>Delete</button>
                     </td>
                     </tr>
