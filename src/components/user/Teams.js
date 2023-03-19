@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import UserNavbar from "./UserNavbar";
 import "./../../assets/css/Teams2.css"
 import UserNavbar2 from "./UserNavbar2";
 import Footer from "./Footer";
@@ -41,7 +40,7 @@ const Teams=()=>{
         getFiles();
           },[])
           const getFiles=()=>{
-            fetch('./jsonFiles/teams.json',{
+            fetch('/jsonFiles/teams.json',{
               headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -71,7 +70,7 @@ const Teams=()=>{
       <figure className=" teams figure">
         <img
           src={"/assets/images/teams/"+teamDetails.facultyCoordinator.imgUrl}
-          className=" teams figure-img img-fluid rounded w-75"
+          className=" teams img-fluid figure-img rounded w-75"
           alt="Error Displaying img"
         />
         <figcaption className=" teams figure-caption text-center">
@@ -104,6 +103,8 @@ const Teams=()=>{
     <div className=" teams container">
       <div className=" teams row row-cols-1 row-cols-md-3">
         {teamDetails.governingBody.map((member,index)=>{
+          //console.log(member.imgUrl);
+
           if(index!==0)
           return(
           <div className=" teams col">
@@ -116,6 +117,11 @@ const Teams=()=>{
             </figcaption>
           </div>
         </div>);
+        else
+        {
+         //console.log(img);
+          return(<></>);
+        }
         })
         }
       </div>
