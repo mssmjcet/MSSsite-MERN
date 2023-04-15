@@ -244,7 +244,7 @@ return(
             return(
                 <div className="col-sm-6">
                 <div className="card mb-3">
-                <img src={"/images/"+prg.Image} className="card-img-top" alt="..."/>
+                <img src={"/images/uploaded/"+prg.Image} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">{prg.Name}</h5>
                     <p className="card-text">{prg.Description}</p>

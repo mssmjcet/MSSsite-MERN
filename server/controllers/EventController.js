@@ -1,28 +1,43 @@
 const expressAsyncHandler = require("express-async-handler");
 const Event = require("./../models/EventsSchema");
 var fs = require('fs');
-
+const upload=require('./../middlewares/upload');
+const storagePath="./../storage/images/uploaded"
 
 const addNewEvent=expressAsyncHandler(async(req,res)=>{
-  let filename='Nil';
-  console.log(req.body);
-  if(req.file && req.file.filename) filename=req.file.filename;
-  const new_Event = new Event({
-    Name:req.body.Name,
-    Description:req.body.Description,
-    StartDate:req.body.StartDate,
-    EndDate:req.body.EndDate,
-    Time:req.body.Time,
-    Duration:req.body.Duration,
-    StateOfEvent:req.body.StateOfEvent,
-    TypeOfEvent:req.body.TypeOfEvent,
-    EventImage:filename,
-    PaymentNumber:req.body.PaymentNumber
-  });
-  new_Event.save();
-  res.json({
-    message:"Event Created successfully",
-  });
+  try{
+    let filename='Nil';
+    await upload(req,res);
+
+    console.log(req.files);
+    if(req.files.length>0 && req.files[0].filename) filename=req.files[0].filename;
+    
+    let newEvtData={
+      Name:req.body.Name,
+      Description:req.body.Description,
+      StartDate:req.body.StartDate,
+      EndDate:req.body.EndDate,
+      Time:req.body.Time,
+      Duration:req.body.Duration,
+      StateOfEvent:req.body.StateOfEvent,
+      TypeOfEvent:req.body.TypeOfEvent,
+      EventImage:filename,
+      PaymentNumber:req.body.PaymentNumber
+    };
+
+    const new_Event = new Event(newEvtData);
+    new_Event.save();
+    res.json({
+      message:"Event Created successfully",
+    });
+  }
+  catch(error){
+    console.log(error);
+    res.json({
+      status:500,
+      message:"error occurred:"+error,
+    });
+  }
 });
 
 const getAllEvents=expressAsyncHandler(async(req,res)=>{
@@ -81,54 +96,51 @@ const deleteParticularEvent =expressAsyncHandler (async(req,res)=>{
 });
 
 const updateParticularEvent =expressAsyncHandler(async(req,res) =>{
-  let filename='Nil';
-  console.log(req.body.Name);
-  if(req.file && req.file.filename)
-  {
-    filename=req.file.filename;
+  try{
+    let filename='Nil';
+    await upload(req,res);
+    console.log(req.body.Name);
+    
+    let updateBlock={
+      Name:req.body.Name,
+      Description:req.body.Description,
+      StartDate:req.body.StartDate,
+      EndDate:req.body.EndDate,
+      Time:req.body.Time,
+      Duration:req.body.Duration,
+      StateOfEvent:req.body.StateOfEvent,
+      TypeOfEvent:req.body.TypeOfEvent,
+      PaymentNumber:req.body.PaymentNumber
+    };
 
-  Event.findByIdAndUpdate({_id:req.body.eventId},{$set:{
-    Name:req.body.Name,
-    Description:req.body.Description,
-    StartDate:req.body.StartDate,
-    EndDate:req.body.EndDate,
-    Time:req.body.Time,
-    Duration:req.body.Duration,
-    StateOfEvent:req.body.StateOfEvent,
-    TypeOfEvent:req.body.TypeOfEvent,
-    EventImage:filename,
-    PaymentNumber:req.body.PaymentNumber,}},function(err,oldEvt){
-      if(fs.existsSync('./build/images/'+oldEvt.EventImage))
-        {
-        fs.unlink('./build/images/'+oldEvt.EventImage, function (err) {
-          if (err) throw err;
-          // if no error, file has been deleted successfully
-          console.log('File deleted!');
-      });
+    if(req.files.length>0 && req.files[0].filename)
+    {
+      filename=req.files[0].filename;
+      updateBlock['EventImage']=filename;
     }
-    })
-  .catch(err => console.error(`Failed to add review: ${err}`));
-  res.json({
-    message:"Event updated successfully",
-  });
-}
-else{
-  Event.findByIdAndUpdate({_id:req.body.eventId},{$set:{
-    Name:req.body.Name,
-    Description:req.body.Description,
-    StartDate:req.body.StartDate,
-    EndDate:req.body.EndDate,
-    Time:req.body.Time,
-    Duration:req.body.Duration,
-    StateOfEvent:req.body.StateOfEvent,
-    TypeOfEvent:req.body.TypeOfEvent,
-    PaymentNumber:req.body.PaymentNumber,}},function(err,event){
+      
+    Event.findByIdAndUpdate({_id:req.body.eventId},{$set:updateBlock},function(err,oldEvt){
         
-    });
+      if(filename!=='Nil' && fs.existsSync('./build/images/'+oldEvt.EventImage))
+          {
+          fs.unlink('./build/images/'+oldEvt.EventImage, function (err) {
+            if (err) throw err;
+            console.log('File deleted!');
+        });
+      }
+      })
+    .catch(err => console.error(`Failed to add review: ${err}`));
     res.json({
       message:"Event updated successfully",
     });
-}
+  }
+  catch(error){
+    console.log(error);
+    res.json({
+      status:500,
+      message:"error occurred:"+error,
+    });
+  }
 });
 
 const getEventWithId=expressAsyncHandler(async(req,res)=>{

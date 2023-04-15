@@ -1,30 +1,40 @@
 const Project = require("./../models/ProjectsModel");
 const asyncHandler=require('express-async-handler');
 var multer = require('multer');
+const upload = require("../middlewares/upload");
 
 
 const addNewProject =asyncHandler(async(req,res) => {
+  try{  
     let filename='Nil';
-    if(req.file && req.file.filename) filename=req.file.filename;
+    await upload(req,res);
 
-  const new_Project = new Project({
-    Name:req.body.Name,
-    Description:req.body.Description,
-    ProjectLink:req.body.ProjectLink,
-    Image:filename,
-  });
+    if(req.files.length>0 && req.files[0].filename) filename=req.files[0].filename;
 
-  new_Project.save();
-    console.log(new_Project);
-    console.log("reached");
-    res.json({
-      status:200,
-      message:"New Project added successful",
-    });
+    let newProjData={
+      Name:req.body.Name,
+      Description:req.body.Description,
+      ProjectLink:req.body.ProjectLink,
+      Image:filename,
+    }
 
+      const new_Project = new Project(newProjData);
+      new_Project.save();
+      
+      console.log(new_Project);
+      console.log("reached");
+    
+      res.json({
+        status:200,
+        message:"New Project added successful",
+      });
+  }
+  catch(error){
+    console.log(error);
+  }
 });
 
-const getProjectWithId=(req,res)=>{
+const getProjectWithId=asyncHandler(async(req,res)=>{
    Project.find({_id:req.params.projectId},function(err,projects){
      if(projects)
      {
@@ -33,10 +43,10 @@ const getProjectWithId=(req,res)=>{
        })
      }
    })
-}
+});
 
 
-const getAllProjects=(req,res)=>{
+const getAllProjects=asyncHandler(async(req,res)=>{
   Project.find((err,projects)=>{
     if(projects)
     {
@@ -45,9 +55,9 @@ const getAllProjects=(req,res)=>{
       })
     }
   });
-}
+});
 
-const deleteParticularProject = (req,res)=>{
+const deleteParticularProject = asyncHandler(async(req,res)=>{
   Project.deleteOne({_id:req.params.projectId },function(err){
     if(err){
       console.log(err);
@@ -56,38 +66,37 @@ const deleteParticularProject = (req,res)=>{
   res.json({
     "message":"deleted successfully"
   })
-}
+});
 
-const updateParticularProject = (req,res) =>{
-  let filename='Nil';
-  if(req.file && req.file.filename)
-  {
-    filename=req.file.filename;
-    Project.updateOne({_id:req.body.projectId},{$set:{
+const updateParticularProject = asyncHandler(async(req,res) =>{
+  try{
+    let filename='Nil';
+    let updateBlock={
       Name:req.body.Name,
       Description:req.body.Description,
       ProjectLink:req.body.ProjectLink,
-      Image:filename,}}).then(result => {
-      const { matchedCount, modifiedCount } = result;
+      Image:filename,
+    }
+    await upload(req,res);
+    if(req.files.length>0 && req.files[0].filename)
+    {
+      filename=req.files[0].filename;
+      updateBlock['Image']=filename;
+    }
 
+      Project.updateOne({_id:req.body.projectId},{$set:updateBlock}).then(result => {
+        const { matchedCount, modifiedCount } = result;
+      })
+      .catch(err => console.error(`Failed to add review: ${err}`));
+    
+    res.json({
+      "message":"sucessfully updated"
     })
-    .catch(err => console.error(`Failed to add review: ${err}`));
   }
-  else
-  {
-    Project.updateOne({_id:req.body.projectId},{$set:{
-      Name:req.body.Name,
-      Description:req.body.Description,
-      ProjectLink:req.body.ProjectLink,}}).then(result => {
-      const { matchedCount, modifiedCount } = result;
-
-    })
-    .catch(err => console.error(`Failed to add review: ${err}`));
+  catch(error){
+    console.log(error);
   }
-  res.json({
-    "message":"sucessfully updated"
-  })
-}
+});
 
 
 

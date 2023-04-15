@@ -20,7 +20,8 @@ var upload = multer();
 
 
 const app=express();
-app.use("/upload",express.static("./../uploads"));
+app.use("/images",express.static(path.join(__dirname,"./storage/images")));
+// app.use("/static",express.static(path.join(__dirname,"./storage/images/static")));
 dotenv.config();
 
 // connectDB();
