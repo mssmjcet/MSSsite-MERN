@@ -381,7 +381,7 @@ return(
             return(
                 <div className="col-sm-6">
                 <div className="card mb-3">
-                <img src={"/images/"+evt.EventImage} className="card-img-top" alt="..."/>
+                <img src={"/images/uploaded/"+evt.EventImage} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">{evt.Name}</h5>
                     <p className="card-text">{evt.Description}</p>

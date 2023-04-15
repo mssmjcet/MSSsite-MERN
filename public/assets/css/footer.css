@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
-* {
+.footer {
   margin: 0;
   padding: 0;
   color: #e5e5e5;
@@ -22,30 +22,30 @@
   font-weight: 600;
   color: #424245;
 } */
-footer {
-  position: fixed;
+.footer footer {
+  /* position: fixed; */
   bottom: 0px;
   width: 100%;
   background: #f5f5f7;
 }
-.main-content {
+.footer .main-content {
   display: flex;
 }
-.main-content .box {
+.footer .main-content .box {
   flex-basis: 50%;
   padding: 10px 20px;
 }
-.box h2 {
+.footer .box h2 {
   color: #424245;
   font-size: 1.125rem;
   font-weight: 600;
   text-transform: uppercase;
 }
-.box .content {
+.footer .box .content {
   margin: 20px 0 0 0;
   position: relative;
 }
-.box .content:before {
+.footer .box .content:before {
   position: absolute;
   content: "";
   top: -10px;
@@ -53,7 +53,7 @@ footer {
   width: 100%;
   background: #3282b8;
 }
-.box .content:after {
+.footer .box .content:after {
   position: absolute;
   content: "";
   height: 2px;
@@ -61,7 +61,7 @@ footer {
   background: white;
   top: -10px;
 }
-.left .content p {
+.footer .left .content p {
   color: #424245;
   text-align: justify;
   /* font-size: 12px; */
@@ -71,13 +71,13 @@ footer {
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons",
     "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-.left .content .social {
+.footer .left .content .social {
   margin: 20px 0 0 0;
 }
-.left .content .social a {
+.footer .left .content .social a {
   padding: 0 2px;
 }
-.left .content .social a i {
+.footer .left .content .social a i {
   height: 40px;
   width: 40px; 
   color: black;
@@ -88,11 +88,11 @@ footer {
    border-radius: 5px; 
   transition: 0.3s;
 }
-.left .content .social a i:hover {
+.footer .left .content .social a i:hover {
   background: #3282b8;
   color: #d9d9d9;
 }
-.center .content i {
+.footer .center .content i {
   height: 40px;
   width: 40px; 
   color: black;
@@ -104,11 +104,11 @@ footer {
   transition: 0.3s;
   cursor: pointer;
 }
-.center .content i:hover {
+.footer .center .content i:hover {
   background: #3282b8;
   color: #d9d9d9;
 }
-.center .content .text {
+.footer .center .content .text {
   color: #424245;
   font-size: 1.0625rem;
   padding-left: 10px;
@@ -120,10 +120,10 @@ footer {
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons",
     "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-.center .content .phone {
+.footer .center .content .phone {
   margin: 15px 0;
 }
-.right form .text {
+.footer .right form .text {
   font-size: 1.0625rem;
   margin-bottom: 2px;
   color: #424245;
@@ -134,11 +134,11 @@ footer {
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons",
     "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-.right form .msg {
+.footer .right form .msg {
   margin-top: 10px;
 }
-.right form input,
-.right form textarea {
+.footer .right form input,
+.footer .right form textarea {
   border-radius: 25px;
   width: 75%;
   font-size: 1.0625rem;
@@ -150,13 +150,13 @@ footer {
 .right form textarea:focus {
   outline-color: black;
 } */
-.right form input {
+.footer .right form input {
   height: 35px;
 }
-.right form .btn {
+.footer .right form .btn {
   margin-top: 10px;
 }
-.right form .btn button {
+.footer .right form .btn button {
   border-radius: 10px;
   height: 37px;
   width: 20%;
@@ -169,35 +169,35 @@ footer {
   cursor: pointer;
   transition: 0.3s;
 }
-.right form .btn button:hover {
+.footer .right form .btn button:hover {
   background: #2e79ab;
   color: white;
 }
-.bottom center {
+.footer .bottom center {
   padding: 5px;
   font-size: 0.9375rem;
   background: #f5f5f7;
 }
-.bottom center span {
+.footer .bottom center span {
   color: #3282b8;
 }
-.bottom center a {
+.footer .bottom center a {
   color: black;
   text-decoration: none;
 }
-.bottom center a:hover {
+.footer .bottom center a:hover {
   text-decoration: underline;
 }
 @media screen and (max-width: 900px) {
-  footer {
+  .footer footer {
     position: relative;
     bottom: 0px;
   }
-  .main-content {
+  .footer .main-content {
     flex-wrap: wrap;
     flex-direction: column;
   }
-  .main-content .box {
+  .footer .main-content .box {
     margin: 5px 0;
   }
 }

@@ -1,11 +1,11 @@
-body{
+.events.container-fluid{
 	background-color: rgb(225, 225, 225);
-}
-.work-shops-heading-div1{
+} 
+.events.work-shops-heading-div1{
     margin-top: 1.5%;
     text-align: center;
 }
-.work-shops-heading{
+.events.work-shops-heading{
     color: #3282b8;
     line-height: 1.47059;
     font-weight: 400;
@@ -15,19 +15,19 @@ body{
     font-style: normal;
     font-size: 3rem;
 }
-.know-more-button{
+.events.know-more-button{
     
     background-color: #3282b8;
 }
-.know-more-button:hover{
+.events.know-more-button:hover{
     background-color: #2e79ab;
 }
-.seminars-heading-div1
+.events.seminars-heading-div1
 {
     margin-top: 2%;
     text-align: center;  
 }
-.seminars-heading{
+.events.seminars-heading{
     color: #3282b8;
     line-height: 1.47059;
     font-weight: 400;
@@ -37,11 +37,11 @@ body{
     font-style: normal;
     font-size: 3rem;
 }
-.Webinars-heading-div1{
+.events.Webinars-heading-div1{
     margin-top: 2%;
     text-align: center; 
 }
-.Webinars-heading{
+.events.Webinars-heading{
     color: #3282b8;
     line-height: 1.47059;
     font-weight: 400;
@@ -51,11 +51,11 @@ body{
     font-style: normal;
     font-size: 3rem;
 }
-.Others-heading-div1{
+.events.Others-heading-div1{
     margin-top: 2%;
     text-align: center; 
 }
-.Others-heading{
+.events.Others-heading{
     color: #3282b8;
     line-height: 1.47059;
     font-weight: 400;

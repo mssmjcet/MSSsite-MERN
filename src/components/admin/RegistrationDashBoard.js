@@ -365,7 +365,7 @@ const RegistrationDashboard=()=>{
                     <td>{registration.emailId}</td>
                     <td>{registration.phoneNumber}</td>
                     <td>{registration.paymentStatus}</td>
-                    <td><img src={"/images/"+registration.paymentFile}/></td>
+                    <td><img src={"/images/uploaded/"+registration.paymentFile}/></td>
                     <td>
                         <button className="btn btn-success" onClick={()=>initializeRegistrationVariables(registration._id)} data-bs-toggle="modal" data-bs-target="#updateRegistration">Edit</button>
                         <button className="btn btn-danger" onClick={()=>deleteRegistrationRecord(registration._id)}>Delete</button>

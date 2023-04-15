@@ -3,31 +3,47 @@ const Registration = require("./../models/registrationSchema");
 const asyncHandler=require('express-async-handler');
 var multer = require('multer');
 var fs = require('fs');
+const upload=require('./../middlewares/upload');
+const storagePath="./../storage/images/uploaded"
 
 
 const addEventRegistration =asyncHandler(async(req,res) => {
+    try{
+        await upload(req,res);
+        console.log(req.files);
+        
+        let filename='Nil';
+        if(req.files.length>0 && req.files[0].filename) filename=req.files[0].filename;
+        console.log(filename);
+        
+        let newRegData={
+          eventID:req.body.EventId,
+          // eventName:req.body.Name,
+          nameOfParticipant:req.body.Name,
+          emailId:req.body.EmailId,
+          phoneNumber:req.body.PhoneNo,
+          rollNumber:req.body.RollNo,
+          paymentStatus:req.body.PaymentStatus,
+          paymentFile:filename,
+        }
 
-    let filename='Nil';
-    if(req.file && req.file.filename) filename=req.file.filename;
+        const new_Registration = new Registration(newRegData);
 
-  const new_Registration = new Registration({
-    eventID:req.body.EventId,
-    // eventName:req.body.Name,
-    nameOfParticipant:req.body.Name,
-    emailId:req.body.EmailId,
-    phoneNumber:req.body.PhoneNo,
-    rollNumber:req.body.RollNo,
-    paymentStatus:req.body.PaymentStatus,
-    paymentFile:filename,
-  });
-
-  new_Registration.save();
-    console.log(new_Registration);
-    console.log("reached");
-    res.json({
-      status:200,
-      message:"registration successful",
-    });
+        new_Registration.save();
+        console.log(new_Registration);
+        console.log("reached");
+        res.json({
+          status:200,
+          message:"registration successful",
+        });
+    }
+    catch(error){
+      console.log(error);
+      res.json({
+        status:500,
+        message:"error occurred:"+error,
+      });
+    }
 
 });
 
@@ -54,9 +70,9 @@ const deleteParticularRegistration = asyncHandler(async(req,res)=>{
     }
     if(registration)
     {
-    if(fs.existsSync('./build/images/'+registration.paymentFile))
+    if(fs.existsSync(storagePath+registration.paymentFile))
     {
-    fs.unlink('./build/images/'+registration.paymentFile, function (err) {
+    fs.unlink(storagePath+registration.paymentFile, function (err) {
       if (err) throw err;
       // if no error, file has been deleted successfully
       console.log('File deleted!');
@@ -81,9 +97,9 @@ const deleteAllRegistrationWithEventId = asyncHandler(async(req,res)=>{
     if(registrations)
     {
       registrations.map((reg)=>{
-        if(fs.existsSync('./build/images/'+reg.paymentFile))
+        if(fs.existsSync(storagePath+reg.paymentFile))
         {
-        fs.unlink('./build/images/'+reg.paymentFile, function (err) {
+        fs.unlink(storagePath+reg.paymentFile, function (err) {
           if (err) throw err;
           // if no error, file has been deleted successfully
           console.log('File deleted!');
@@ -108,48 +124,50 @@ const deleteAllRegistrationWithEventId = asyncHandler(async(req,res)=>{
 });
 
 const updateRegistrationDetails=asyncHandler(async(req,res)=>{
-  let filename='Nil';
-  if(req.file && req.file.filename)
-  {
-    filename=req.file.filename;
-    Registration.findByIdAndUpdate({_id:req.body.registrationId},{$set:{
-      eventID:req.body.EventId,
-    nameOfParticipant:req.body.Name,
-    emailId:req.body.EmailId,
-    phoneNumber:req.body.PhoneNo,
-    rollNumber:req.body.RollNo,
-    paymentStatus:req.body.PaymentStatus,
-    paymentFile:filename,}},function(err,oldReg){
-      if(fs.existsSync('./build/images/'+oldReg.paymentFile))
-        {
-        fs.unlink('./build/images/'+oldReg.paymentFile, function (err) {
-          if (err) throw err;
-          // if no error, file has been deleted successfully
-          console.log('File deleted!');
-      });
-    }
-    })
-    .catch(err => console.error(`Failed to add review: ${err}`));
-  }
-  else
-  {
-    Registration.updateOne({_id:req.body.registrationId},{$set:{
-      eventID:req.body.EventId,
-    // eventName:req.body.Name,
-    nameOfParticipant:req.body.Name,
-    emailId:req.body.EmailId,
-    phoneNumber:req.body.PhoneNo,
-    rollNumber:req.body.RollNo,
-    paymentStatus:req.body.PaymentStatus,}}).then(result => {
-      const { matchedCount, modifiedCount } = result;
+  try{
+    let filename='Nil';
+    await upload(req,res);
 
-    })
-    .catch(err => console.error(`Failed to add review: ${err}`));
+    let updateBlock={
+      eventID:req.body.EventId,
+      nameOfParticipant:req.body.Name,
+      emailId:req.body.EmailId,
+      phoneNumber:req.body.PhoneNo,
+      rollNumber:req.body.RollNo,
+      paymentStatus:req.body.PaymentStatus,
+    };
+
+    if(req.files.length>0 && req.files[0].filename)
+    {
+      filename=req.files[0].filename;
+      updateBlock['paymentFile']=filename;
+    }
+    
+      Registration.findByIdAndUpdate({_id:req.body.registrationId},{$set:updateBlock},function(err,oldReg){
+        
+        if(filename!=='Nil' && fs.existsSync(storagePath+oldReg.paymentFile))
+          {
+          fs.unlink(storagePath+oldReg.paymentFile, function (err) {
+            if (err) throw err;
+            // if no error, file has been deleted successfully
+            console.log('File deleted!');
+        });
+      }
+      })
+      .catch(err => console.error(`Failed to add review: ${err}`));
+
+    res.json({
+      status:200,
+      message:"update successful",
+    });
   }
-  res.json({
-    status:200,
-    message:"update successful",
-  });
+  catch(error){
+    console.log(error);
+    res.json({
+      status:500,
+      message:"error occurred:"+error,
+    });
+  }
 });
 
 

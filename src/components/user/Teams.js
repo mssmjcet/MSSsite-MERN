@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import UserNavbar from "./UserNavbar";
 import "./../../assets/css/Teams2.css"
 import UserNavbar2 from "./UserNavbar2";
 import Footer from "./Footer";
 const Teams=()=>{
+  const baseUrl='/images/static/teams'
   const [teamDetails,setTeamDetails]=useState(
     {
       "facultyCoordinator":{
@@ -41,7 +41,7 @@ const Teams=()=>{
         getFiles();
           },[])
           const getFiles=()=>{
-            fetch('./jsonFiles/teams.json',{
+            fetch('/jsonFiles/teams.json',{
               headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -70,8 +70,8 @@ const Teams=()=>{
     <div className=" teams faculty_co">
       <figure className=" teams figure">
         <img
-          src={"/assets/images/teams/"+teamDetails.facultyCoordinator.imgUrl}
-          className=" teams figure-img img-fluid rounded w-75"
+          src={baseUrl+"/"+teamDetails.facultyCoordinator.imgUrl}
+          className=" teams img-fluid figure-img rounded w-75"
           alt="Error Displaying img"
         />
         <figcaption className=" teams figure-caption text-center">
@@ -91,7 +91,7 @@ const Teams=()=>{
 
     <div className=" teams row">
       <div className=" teams text-center">
-        <img src={"/assets/images/teams/"+teamDetails.governingBody[0].imgUrl} className=" teams rounded-circle" alt="..." />
+        <img src={baseUrl+"/"+teamDetails.governingBody[0].imgUrl} className=" teams rounded-circle" alt="..." />
         <figcaption className=" teams figure-caption text-center">
           <br />
           <h5>{teamDetails.governingBody[0].position}</h5>
@@ -104,11 +104,13 @@ const Teams=()=>{
     <div className=" teams container">
       <div className=" teams row row-cols-1 row-cols-md-3">
         {teamDetails.governingBody.map((member,index)=>{
+          //console.log(member.imgUrl);
+
           if(index!==0)
           return(
           <div className=" teams col">
           <div className=" teams text-center">
-            <img src={"/assets/images/teams/"+member.imgUrl} className=" teams rounded-circle" alt="..." />
+            <img src={baseUrl+"/"+member.imgUrl} className=" teams rounded-circle" alt="..." />
             <figcaption className=" teams figure-caption text-center">
               <br />
               <h5>{member.position}</h5>
@@ -116,6 +118,11 @@ const Teams=()=>{
             </figcaption>
           </div>
         </div>);
+        else
+        {
+         //console.log(img);
+          return(<></>);
+        }
         })
         }
       </div>
@@ -142,7 +149,7 @@ const Teams=()=>{
             <div className=" teams col mx-auto">
             <div className=" teams card" >
             {/* style={{width: "18rem"}} */}
-            <img src={"/assets/images/teams/"+member.imgUrl} className=" teams card-img-top specialImg img-fluid " alt="" />
+            <img src={baseUrl+"/"+member.imgUrl} className=" teams card-img-top specialImg img-fluid " alt="" />
               <div className=" teams card-body">
                 <figcaption className=" teams figure-caption text-center">
                   <br />

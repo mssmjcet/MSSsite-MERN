@@ -1,10 +1,10 @@
-body{
+.teams.container-fluid{
 	background-color: rgb(225, 225, 225);
 }
-.teams_div1 {
+.teams.teams_div1 {
   text-align: center;
 }
-.teams_h1 {
+.teams.teams_h1 {
   color: #3282b8;
   line-height: 1.47059;
   font-weight: 400;
@@ -15,27 +15,38 @@ body{
   font-size: 4rem;
 }
 
-.faculty_co {
+.teams.faculty_co {
   text-align: center;
 }
-.figure {
+.teams.figure {
   height: 410;
   width: 410;
 }
-.figure-caption {
+.teams.figure-caption {
   color: #222831;
 }
 
 /* Gov Body */
-.rounded-circle{
+.teams.rounded-circle{
     height: 300px;
     width: 300px;
     border-radius: 50%;
     /* display: inline-block; */
 }
+.teams.card-img-top {
+  width: 100%;
+  height: 85vh;
+  object-fit: cover;
+}
 
+.teams.specialImg{
+  /* height:300px; */
+  /* width: 300px; */
+  /* height:; */
+  width: 100%;
+}
 
-.Governing_bd_h2{
+.teams.Governing_bd_h2{
   color: #3282b8;
   line-height: 1.47059;
   font-weight: 400;
@@ -45,7 +56,7 @@ body{
   font-style: normal;
   font-size: 3rem;
 }
-.execom_h2{
+.teams.execom_h2{
 color: #3282b8;
   line-height: 1.47059;
   font-weight: 400;
@@ -57,17 +68,17 @@ color: #3282b8;
 }
 
 /* modify boootstrap card */
-.card {
+.teams.card {
     margin-top: 2em;
     /* padding: 0.2em;  */
     border-radius: 2em;
     text-align: center;
     box-shadow: 0 5px 10px rgba(10, 3, 61, 0.2);
   }
-  .card img {
+  .teams.card img {
     border-radius: 2em;
   }
-  .card .card-title {
+  .teams.card .card-title {
     font-weight: 700;
     font-size: 1.5em;
   }
@@ -89,12 +100,13 @@ color: #3282b8;
   /* .execom-row{
 	margin-left: 5%;
   } */
-  .card{
+  .teams.card{
 	transform: scale(1);
 	transition: 0.2s ease-in-out;
 	cursor : pointer;
   }
-  .card:hover{
+  .teams.card:hover{
 	transform: scale(1.18);
+  z-index: 3;
   }
   /* execom */
