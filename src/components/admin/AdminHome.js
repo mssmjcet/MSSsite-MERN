@@ -12,13 +12,15 @@ const AdminHome=()=>{
           .then((data)=>setStatus(data.message))
     }
     return(
-        <div className="container-fluid">
-            <AdminNavbar/>
+        <>
+        <AdminNavbar/>
+        <div className="container-fluid"> 
             <h1>Admin Home Page</h1>
             <p>Click the button to create all files with the changes for data in database</p>
             <button onClick={createFiles}>Save Changes</button>
             {status!=='' && <p>{status}</p>}
         </div>
+        </>
     )
 }
 
