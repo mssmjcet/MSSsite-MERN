@@ -76,16 +76,17 @@ const deleteParticularRegistration = asyncHandler(async(req,res)=>{
       if (err) throw err;
       // if no error, file has been deleted successfully
       console.log('File deleted!');
-      res.json({
-                message:"Delete Successful",
-              });
+      
   });
   }
+  res.json({
+    message:"Delete Successful",
+  });
     }
     else
     {
         res.json({
-        message:"not found",
+        message:"not found1",
       });
     }
   });

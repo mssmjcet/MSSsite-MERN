@@ -70,21 +70,21 @@ const deleteParticularProject = asyncHandler(async(req,res)=>{
 
 const updateParticularProject = asyncHandler(async(req,res) =>{
   try{
-    let filename='Nil';
+    await upload(req,res);
+    console.log('projects controller')
+    console.log(req.body)
     let updateBlock={
       Name:req.body.Name,
       Description:req.body.Description,
       ProjectLink:req.body.ProjectLink,
-      Image:filename,
     }
-    await upload(req,res);
+    
     if(req.files.length>0 && req.files[0].filename)
     {
-      filename=req.files[0].filename;
-      updateBlock['Image']=filename;
+      updateBlock['Image']=req.files[0].filename;
     }
 
-      Project.updateOne({_id:req.body.projectId},{$set:updateBlock}).then(result => {
+     await Project.updateOne({_id:req.body.projectId},updateBlock).then(result => {
         const { matchedCount, modifiedCount } = result;
       })
       .catch(err => console.error(`Failed to add review: ${err}`));
