@@ -29,7 +29,10 @@ const EditProjectModal=(props)=>{
         formData1.append('Name',name);
         formData1.append('Description',description);
         formData1.append('ProjectLink',projectLink);   
-        formData1.append('Image', projectImage.data);
+        if(projectImage.data==='')
+            formData1.append('Image','Nil')
+        else
+            formData1.append('Image', projectImage.data);
         console.log(formData1);
         console.log(name);
         for (var key of formData1.entries()) {

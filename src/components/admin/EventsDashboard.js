@@ -68,8 +68,8 @@ return(
         {/* <!-- Modal event details update--> */}
         <EditEventModal fetchEventsData={fetchEventsData} eventId={eventId} eventData={eventData}/>
 
-        <div className="h2 text-center ">Events</div>
-        <div className="row justify-content-end">
+        <div className="h2 text-center my-5">Events</div>
+        <div className="row justify-content-end my-5">
             <div className="col-3">
 
             </div>
@@ -95,7 +95,7 @@ return(
             </div>
         </div> */}
         
-        <div className="row mx-2 border-2 border-rounded border-primary">
+        <div className="mt-5 row mx-2 border-2 border-rounded border-primary">
         {eventData?.length===0 &&
             <div className="text-center h-100">
                 
@@ -107,7 +107,7 @@ return(
             if(searchInput==="" || evt.Name.includes(searchInput))
             return(
                 <div className="col-sm-4">
-                <div className="card mb-3">
+                <div className="card mb-3 h-100">
                 <img src={"/images/uploaded/"+evt.EventImage} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">{evt.Name}</h5>
@@ -116,7 +116,17 @@ return(
                         <div className="col-6">
                             <p className="card-text"><span className="fw-bold">Start Date:</span> {evt.StartDate}</p>
                             <p className="card-text"><span className="fw-bold">Time:</span> {evt.Time}</p>
-                            <p className="card-text"><span className="fw-bold">State Of Event:</span> {evt.StateOfEvent}</p>
+                            <p className="card-text"><span className="fw-bold">State Of Event:</span> 
+                            {evt.StateOfEvent==='new' &&
+                                <button className="btn btn-sm btn-primary"> {evt.StateOfEvent}</button>
+                            }
+                            {evt.StateOfEvent==='active' &&
+                                <button className="btn btn-sm btn-success"> {evt.StateOfEvent}</button>
+                            }
+                            {evt.StateOfEvent==='ended' &&
+                                <button className="btn btn-sm btn-danger"> {evt.StateOfEvent}</button>
+                            }
+                            </p>
                            
                         </div>
                         <div className="col-6">
@@ -127,8 +137,11 @@ return(
                     </div>
                     <br/>
                     <p className="card-text"><span className="fw-bold">Payment Number:</span> {evt.PaymentNumber}</p>
-                    <button className="btn btn-success m-1" onClick={()=>setEventId(evt._id)} data-bs-toggle="modal" data-bs-target="#updateEvent">Edit</button>
-                    <button className="btn btn-danger m-1" onClick={()=>deleteEvent(evt._id)}>Delete</button>
+                    
+                </div>
+                <div className="card-footer bg-light d-flex">
+                    <button className="btn btn-success m-1 col-6" onClick={()=>setEventId(evt._id)} data-bs-toggle="modal" data-bs-target="#updateEvent">Edit</button>
+                    <button className="btn btn-danger m-1 col-6" onClick={()=>deleteEvent(evt._id)}>Delete</button>
                 </div>
                 </div>
                 </div>

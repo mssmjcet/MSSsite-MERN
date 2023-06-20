@@ -2,25 +2,6 @@ import { useEffect,useState } from "react";
 
 const EditRegistrationModal=(props)=>{
 
-    
-    const [registrationData,setRegistrationData]=useState([
-        {
-            name:'dummy',
-            rollNo:'1111111',
-            emailId:'dummy@dummy.com',
-            phoneNo:'111111111',
-            paymentStatus:'yes',
-            paymentScreenshot:'dummy.jpg',
-        }
-    ]);
-
-        useEffect(()=>{
-            if(props.regId!=-1)
-            {
-                initializeRegistrationVariables(props.regId);
-            }
-        },[props.regId])    
-    
     const [name,setName]=useState("");
     const [rollNo,setRollNo]=useState("");
     const [phoneNo,setPhoneNo]=useState("");
@@ -30,6 +11,15 @@ const EditRegistrationModal=(props)=>{
     const [status,setStatus]=useState('');
     const [loading,setLoading]=useState(false);
     const [regId,setRegId]=useState(-1);
+
+    useEffect(()=>{
+            if(props.regId!=-1)
+            {
+                initializeRegistrationVariables(props.regId);
+            }
+    },[props.regId])    
+    
+    
     
       
       const updateRegistrationDetails = async (e) => {
@@ -51,7 +41,7 @@ const EditRegistrationModal=(props)=>{
         .then((data)=>data.json())
         .then((data)=>{
             setStatus(data.message)
-            props.fetchRegistartionsForEvent(0);
+            props.fetchRegistrationsForEvent(props.eventId);
         })
         setLoading(false);
       }
@@ -79,7 +69,7 @@ const EditRegistrationModal=(props)=>{
 
       function initializeRegistrationVariables(registrationId)
       {
-        let regRecord=props.registrationData.find(reg=>reg._id===registrationId)
+        let regRecord=props?.registrationData?.find(reg=>reg._id===registrationId)
         console.log(regRecord);
         setRegId(regRecord._id);
         setName(regRecord.nameOfParticipant);
@@ -116,6 +106,9 @@ const EditRegistrationModal=(props)=>{
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
+                    <div className="mb-3">
+                        <span className="fw-bold fst-italic">Event Name:</span> {props.eventName}
+                    </div>
                     <form encType="multipart/form-data">
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Name</span>

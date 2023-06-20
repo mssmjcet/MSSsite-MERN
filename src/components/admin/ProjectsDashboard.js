@@ -51,8 +51,8 @@ return(
         {/* <!-- Modal Project details update--> */}
         <EditProjectModal fetchProjectsData={fetchProjectsData} projectId={projectId} projectsData={projectsData} />
         
-        <div className="h2 text-center ">Projects</div>
-        <div className="row">
+        <div className="h2 text-center my-5">Projects</div>
+        <div className="row my-5">
             <div className="col-3">
 
             </div>
@@ -77,16 +77,20 @@ return(
         {projectsData?.map((prg)=>{
             if(searchInput==="" || prg.Name.includes(searchInput))
             return(
-                <div className="col-sm-6">
-                <div className="card mb-3">
-                <img src={"/images/uploaded/"+prg.Image} className="card-img-top" alt="..."/>
-                <div className="card-body">
-                    <h5 className="card-title">{prg.Name}</h5>
-                    <p className="card-text">{prg.Description}</p>
-                    <p className="card-text"><span className="fw-bold">Project Link:</span> <a href={prg.ProjectLink} target="_blank">{prg.ProjectLink}</a> </p>
-                    <button className="btn btn-success" onClick={()=>setProjectId(prg._id)} data-bs-toggle="modal" data-bs-target="#updateProject">Edit</button>
-                    <button className="btn btn-danger" onClick={()=>deleteProject(prg._id)}>Delete</button>
-                </div>
+                <div className="col-sm-4">
+                <div className="card m-3 h-100">
+                
+                    <img src={"/images/uploaded/"+prg.Image} className="card-img-top" alt="..."/>
+                
+                    <div className="card-body">
+                        <h5 className="card-title">{prg.Name}</h5>
+                        <p className="card-text">{prg.Description}</p>
+                        <p className="card-text"><span className="fw-bold">Project Link:</span> <a href={prg.ProjectLink} target="_blank">{prg.ProjectLink}</a> </p>
+                    </div>
+                    <div className="card-footer bg-light d-flex">
+                        <button className="btn btn-success m-1 col-6" onClick={()=>setProjectId(prg._id)} data-bs-toggle="modal" data-bs-target="#updateProject">Edit</button>
+                        <button className="btn btn-danger m-1 col-6" onClick={()=>deleteProject(prg._id)}>Delete</button>
+                    </div>
                 </div>
                 </div>
             );

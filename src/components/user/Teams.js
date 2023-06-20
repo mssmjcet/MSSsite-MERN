@@ -140,16 +140,16 @@ const Teams=()=>{
     <br />
     <div className=" teams container">
       
-      <div>
       
-        <div className=" teams row execom-row row-cols-1 row-cols-md-3">
+      
+        <div className=" teams row execom-row row-cols-1 row-cols-md-2 row-cols-lg-3">
           
          {teamDetails.execom.map((member)=>{
           return(
             <div className=" teams col mx-auto">
             <div className=" teams card" >
             {/* style={{width: "18rem"}} */}
-            <img src={baseUrl+"/"+member.imgUrl} className=" teams card-img-top specialImg img-fluid " alt="" />
+            <img src={baseUrl+"/"+member.imgUrl} className="teams card-img-top object-fit-scale" alt="" />
               <div className=" teams card-body">
                 <figcaption className=" teams figure-caption text-center">
                   <br />
@@ -167,7 +167,7 @@ const Teams=()=>{
          }) 
           }
           
-        </div>
+      
       </div>
       
         </div>

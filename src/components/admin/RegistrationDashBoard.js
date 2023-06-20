@@ -10,6 +10,8 @@ const RegistrationDashboard=()=>{
     const [eventData,setEventData]=useState([]);
     const [registrationData,setRegistrationData]=useState([]);
     const [searchInput,setSearchInput]=useState("");
+    const [eventName,setEventName]=useState("");
+
     useEffect(()=>{
         fetchEventsData();
     },[]);
@@ -17,17 +19,22 @@ const RegistrationDashboard=()=>{
     const fetchEventsData=()=>{
         fetch('/api/admin/Event').then((res)=>res.json())
         .then((data)=>{
-            if(data.eventData)
-            setEventData(data.eventData);
+            if(data.eventsData)
+            setEventData(data.eventsData);
             console.log(data);
-            console.log(data.eventData);
+            console.log(data.eventsData);
         })
         console.log("fetched");
     }
+    // useEffect(()=>{
+    //     console.log(eventName)
+    // },[eventName]);
+
     const fetchRegistrationsForEvent=(value)=>{
         const newEventId=value;
         setEventId(newEventId);
-
+        setEventName(eventData.find((evt)=>evt._id===value)?.Name)
+        
         //fetch registrations
         fetch('/api/admin/Registration/'+newEventId,{
         method: "GET",
@@ -49,6 +56,7 @@ const RegistrationDashboard=()=>{
             alert(data.message);
             console.log(data);
            //setLoading(false);
+           fetchRegistrationsForEvent(eventId);
         })
     }
     const deleteRegistrationsForEvent=(e)=>{
@@ -60,6 +68,7 @@ const RegistrationDashboard=()=>{
             alert(data.message);
             console.log(data);
            //setLoading(false);
+           fetchRegistrationsForEvent(eventId);
         })
     }
     
@@ -72,11 +81,11 @@ const RegistrationDashboard=()=>{
            
 
             {/* <!-- Modal- new registration details --> */}
-            <AddRegistrationModal fetchRegistrationsForEvent={fetchRegistrationsForEvent} eventId={eventId} />
+            <AddRegistrationModal fetchRegistrationsForEvent={fetchRegistrationsForEvent} eventId={eventId} eventName={eventName} />
             {/* <!-- Modal -registration details update--> */}
-            <EditRegistrationModal fetchRegistrationsForEvent={fetchRegistrationsForEvent} eventId={eventId} regId={regId} />
+            <EditRegistrationModal fetchRegistrationsForEvent={fetchRegistrationsForEvent} eventId={eventId} eventName={eventName} regId={regId} registrationData={registrationData} />
             
-            <div className="h2 text-center ">Registration details</div>
+            <div className="h2 text-center my-5">Registration details</div>
 
             <div className="row my-5">
                 <div className="col-3">
@@ -85,8 +94,8 @@ const RegistrationDashboard=()=>{
                     <form>
                     <select className="form-control form-select" onChange={(e)=>fetchRegistrationsForEvent(e.target.value)}>
                         <option>Select a event</option>
-                        {eventData.map((event)=>{
-                            return <option value={event.id}>{event.name}</option>
+                        {eventData.map((evt)=>{
+                            return <option value={evt._id}>{evt.Name}</option>
                         })}
 
                     </select>
@@ -136,7 +145,7 @@ const RegistrationDashboard=()=>{
                     <td>{registration.emailId}</td>
                     <td>{registration.phoneNumber}</td>
                     <td>{registration.paymentStatus}</td>
-                    <td><img src={"/images/uploaded/"+registration.paymentFile}/></td>
+                    <td><img src={"/images/uploaded/"+registration.paymentFile} className="img-fluid" /></td>
                     <td>
                         <button className="btn btn-success" onClick={()=>setRegId(registration._id)} data-bs-toggle="modal" data-bs-target="#updateRegistration">Edit</button>
                         <button className="btn btn-danger" onClick={()=>deleteRegistrationRecord(registration._id)}>Delete</button>

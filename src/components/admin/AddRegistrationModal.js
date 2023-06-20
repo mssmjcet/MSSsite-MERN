@@ -64,6 +64,9 @@ return(<>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
+                    <div className="mb-3">
+                        <span className="fw-bold fst-italic">Event Name:</span> {props.eventName}
+                    </div>
                     <form encType="multipart/form-data">
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Name</span>
