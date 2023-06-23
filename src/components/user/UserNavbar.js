@@ -1,17 +1,19 @@
+import { Link } from "react-router-dom";
+
 const UserNavbar=()=>{
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-  <a className="navbar-brand" href="#">MSS MJCET</a>
+  <Link className="navbar-brand" to="/">MSS MJCET</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
-      <a className="nav-item nav-link active" href="/">Home </a>
-      <a className="nav-item nav-link" href="/events">Events</a>
-      <a className="nav-item nav-link" href="/projects">Projects</a>
-      <a className="nav-item nav-link" href="/teams">Teams</a>
-      <a className="nav-item nav-link" href="/register">Register</a>
+      <Link className="nav-item nav-link active" to="/">Home </Link>
+      <Link className="nav-item nav-link" to="/events">Events</Link>
+      <Link className="nav-item nav-link" to="/projects">Projects</Link>
+      <Link className="nav-item nav-link" to="/teams">Teams</Link>
+      <Link className="nav-item nav-link" to="/register">Register</Link>
     </div>
   </div>
 </nav>

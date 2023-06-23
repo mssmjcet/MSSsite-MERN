@@ -46,8 +46,8 @@ return(
        
 
         {/* <!-- Modal- new project details --> */}
-       <AddProjectModal fetchProjectsData={fetchProjectsData} />
         
+        <AddProjectModal fetchProjectsData={fetchProjectsData}/>
         {/* <!-- Modal Project details update--> */}
         <EditProjectModal fetchProjectsData={fetchProjectsData} projectId={projectId} projectsData={projectsData} />
         

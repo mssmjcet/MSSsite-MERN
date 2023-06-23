@@ -14,7 +14,7 @@ import Register from "./components/user/Register";
 import Projects from "./components/user/Projects";
 import Events from './components/user/Events';
 import Teams from "./components/user/Teams";
-import RegistrationDashboard from "./components/admin/RegistrationDashboard";
+import RegistrationDashboard from "./components/admin/RegistrationDashBoard";
 import EventsDashboard from "./components/admin/EventsDashboard";
 import ProjectsDashBoard from './components/admin/ProjectsDashboard';
 import AdminHome from './components/admin/AdminHome';

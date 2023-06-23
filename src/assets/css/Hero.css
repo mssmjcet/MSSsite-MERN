@@ -1,0 +1,51 @@
+.innovate {
+  color: #ffbb00;
+}
+.invent {
+  color: #7cbb00;
+}
+.inspire {
+  color: #00a1f1;
+}
+.hero-text1 {
+  display: inline;
+  font-size: 56px;
+  line-height: 1.07143;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
+}
+
+.Hero {
+  width: 80%;
+  text-align: center;
+  margin: 0% auto;
+  margin-top: 10%;
+}
+.hero-text2 {
+  font-size: 56px;
+  line-height: 1.07143;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
+  color: #f65314;
+}
+.iiContainer{
+  margin-left:20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+@media (max-width:100px) and (min-width: 800px) {
+
+  .Hero{
+    width: 100%;
+  }
+ 
+
+}
+

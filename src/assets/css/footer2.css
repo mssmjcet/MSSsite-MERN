@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+.main-container{
+    background-color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+}
+.footer-container{
+    background-color: #e5e5e5;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2.5rem;
+    font-family: "Inter", sans-serif;
+}
+
+.social-media-container{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    gap: 13%;
+    
+}
+.media{
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+}
+.social-media-container .insta , .facebook , .twitter{
+    font-size: xx-large;
+    cursor: pointer;
+}
+.ach-container{
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.ach-container p{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 20px;
+    opacity: 0.8;
+    transition: opacity 400ms;
+    cursor: pointer;
+    
+}
+
+.ach-container p:hover{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 20px;
+    opacity: 1;
+    transition: opacity 400ms;
+    cursor: pointer;
+}
+
+.address-container{
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.address-container p{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 20px;
+    opacity: 0.8;
+    transition: opacity 400ms;
+    cursor: pointer;
+}
+.address-container .address-icon{
+    font-size: xx-large;
+
+}
+.address-heading{
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    font-weight: 600;
+}
+
+.social-media-heading{
+    margin-bottom: 2rem;
+    width: fit-content;
+    font-weight: 600;
+    margin-right: 9rem;
+    
+}
+
+@media (max-width:900px) {
+
+    .footer-container{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
+    }
+    .social-media-container{
+        width: 100%;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .ach-container{
+        width: 60%;
+        margin-left: 6rem;
+    }
+    .address-container{
+        width: 60%;
+        margin-left: 1.5rem;
+    }
+
+    .media{
+        width: 50%;
+    }
+    .social-media-container .insta , .facebook , .twitter{
+      font-size: xx-large;
+      width: 33%;
+        
+    }
+
+    .social-media-heading{
+        margin-bottom: 2rem;
+        width: fit-content;
+        font-weight: 600;
+        margin-right: 0rem;
+        
+    }
+}
+
+.insta:hover{
+    color: rgb(228, 64, 95);
+   
+}
+.twitter:hover{
+    color:#1DA1F2;
+  
+}
+.facebook:hover{
+    color:#4267B2;
+}
+
+
+.nav-link {
+    text-decoration: none;
+   
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    text-decoration: none;
+    
+  }

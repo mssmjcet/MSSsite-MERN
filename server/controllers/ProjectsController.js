@@ -77,6 +77,7 @@ const updateParticularProject = asyncHandler(async(req,res) =>{
       Name:req.body.Name,
       Description:req.body.Description,
       ProjectLink:req.body.ProjectLink,
+     
     }
     
     if(req.files.length>0 && req.files[0].filename)
