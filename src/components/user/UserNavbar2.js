@@ -1,6 +1,48 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import "./../../assets/css/navbar.css";
+import { Link } from "react-router-dom";
 const UserNavbar2=()=>{
+    const [desktopNavHidden, setDesktopNavHidden] = useState(false);
+  const [searchContainerHidden, setSearchContainerHidden] = useState(true);
+  const [overlayShown, setOverlayShown] = useState(false);
+  const [navContainerActive, setNavContainerActive] = useState(false);
+  const [searchBarActive, setSearchBarActive] = useState(false);
+  const [navMoveUp, setNavMoveUp] = useState(false);
+
+  const handleSearchButtonClick = () => {
+    setDesktopNavHidden(true);
+    setSearchContainerHidden(false);
+    setOverlayShown(true);
+  };
+
+  const handleCloseButtonClick = () => {
+    setDesktopNavHidden(false);
+    setSearchContainerHidden(true);
+    setOverlayShown(false);
+  };
+
+  const handleOverlayClick = () => {
+    setDesktopNavHidden(false);
+    setSearchContainerHidden(true);
+    setOverlayShown(false);
+  };
+
+  const handleMenuIconClick = () => {
+    setNavContainerActive(!navContainerActive);
+  };
+
+  const handleSearchInputClick = () => {
+    setSearchBarActive(true);
+    setNavMoveUp(true);
+    setDesktopNavHidden(true);
+  };
+
+  const handleCancelBtnClick = () => {
+    setSearchBarActive(false);
+    setNavMoveUp(false);
+    setDesktopNavHidden(false);
+  };
 //     useEffect(()=>{
 //         const searchButton = document.querySelector("nav .desktop-nav .link-search");
 // const closeButton = document.querySelector(".search-container .link-close");
@@ -69,48 +111,48 @@ const UserNavbar2=()=>{
                 </li>
 
                 <li>
-                    <a href="#" className="link-logo"></a>
+                    <Link to="" className="link-logo"></Link>
                 </li>
 
                 <li>
-                    <a href="" className="link-bag"></a>
+                    <Link to="" className="link-bag"></Link>
                 </li>
             </ul>
 
             <ul className="desktop-nav">
                 <span>
                     <li>
-                        <a href="#" className="link-logo"><img className="mss-log" src="/assets/images/mss-logo4.png" alt=""/></a>    
+                        <Link to="/" className="link-logo"><img className="mss-log" src="/assets/images/mss-logo4.png" alt=""/></Link>    
                     </li>
                 </span>
 
                 <span>
                     <li>
-                        <a href="#"><span><h5>MSS MJCET</h5></span></a>  
+                        <Link to="/"><span><h5>MSS MJCET</h5></span></Link>  
                     </li>
                 </span>
     
                 <li>
-                    <a href="/">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <a href="/events">Events</a>
+                    <Link to="/events">Events</Link>
                 </li>
                 <li>
-                    <a href="/teams">Team</a>
+                    <Link to="/teams">Team</Link>
                 </li>
                 <li>
-                    <a href="/projects">Projects</a>
+                    <Link to="/projects">Projects</Link>
                 </li>
                 <li>
-                    <a href="/register">Register</a>
+                    <Link to="/register">Register</Link>
                 </li>
               
                 <li>
-                    <a href="#" className="link-search"></a>
+                    <Link to="#" className="link-search"></Link>
                 </li>
                 <li>
-                    <a href="#" className="link-bag"></a>
+                    <Link to="#" className="link-bag"></Link>
                 </li>
 
             </ul>

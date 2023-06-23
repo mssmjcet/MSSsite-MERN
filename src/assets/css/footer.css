@@ -22,8 +22,8 @@
   font-weight: 600;
   color: #424245;
 } */
-.footer footer {
-  /* position: fixed; */
+ footer {
+  position: fixed;
   bottom: 0px;
   width: 100%;
   background: #f5f5f7;

@@ -1,0 +1,116 @@
+/* *{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+} */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.carousel {
+    /* margin-bottom: 30rem; */
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 25rem;
+    
+    /* Add other styling properties as needed */
+  }
+  
+  .carousel-arrow {
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    /* Add other styling properties as needed */
+  }
+  
+  .carousel-arrow.left {
+    left: -20px;
+    transform: translateY(130%); 
+    font-size:50px;
+    
+  }
+  
+  .carousel-arrow.right {
+    right: -20px;
+    transform: translateY(130%); 
+    font-size:50px; 
+  }
+
+  .carousel-arrow.left:hover{
+    color: #f65314;
+  }
+
+  .carousel-arrow.right:hover{
+    color: #f65314;
+  }
+
+ .carousel-img{
+    width: 50%;
+    height: 50%;
+    margin-left: 3rem;
+    margin-bottom: 5rem;
+    transform: translateX(-60px);
+    border-radius: 10px;
+ }
+
+.carousel-heading{
+    font-family: 'Roboto';
+    color: #f65314;
+}
+
+.carousel-heading-container{
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.carousel-item{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    transform: translateX(-20px);
+    width:80%;
+    margin-left: 12%;
+}
+
+.event-info{
+    width: fit-content;
+    margin-top: 7rem;
+    color: gray;
+    font-size: 20px;
+    transform: translateY(-70px);
+}
+.event-info .eventName{
+    font-family: 'Roboto';
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+@media (max-width:1000px) {
+    .carousel-item{
+        display: block;
+        margin-left: 35%;
+        
+    }
+
+    .carousel-img{
+        width: 80%;
+        height: 80%;
+        margin-left: 3rem;
+        margin-bottom: 0rem;
+        transform: translateX(-90px);
+        border-radius: 10px;
+     }
+
+    .event-info{
+        transform: translateX(-25px);
+        margin-top: 2rem;
+    }
+     
+
+}
+  
