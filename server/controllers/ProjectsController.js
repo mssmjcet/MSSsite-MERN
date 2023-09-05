@@ -1,6 +1,5 @@
 const Project = require("./../models/ProjectsModel");
 const asyncHandler=require('express-async-handler');
-var multer = require('multer');
 const upload = require("../middlewares/upload");
 
 

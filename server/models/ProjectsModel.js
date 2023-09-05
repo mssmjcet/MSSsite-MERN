@@ -1,14 +1,14 @@
 const mongoose=require('mongoose');
 
 
-const ProjetSchema = new mongoose.Schema({
+const ProjectSchema = new mongoose.Schema({
   Name:String,
   Description:String,
   Image:String,
   ProjectLink:String,
 });
 
-const Project = mongoose.model("Project", ProjetSchema);
+const Project = mongoose.model("Project", ProjectSchema);
 
 
 module.exports = Project;
