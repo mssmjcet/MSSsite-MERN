@@ -4,7 +4,7 @@ var util=require('util');
 var upload = multer({
   storage:multer.diskStorage({
     destination:(req,file,cb)=>{
-      cb(null,path.join(__dirname,'./../storage/images/uploaded'));
+      cb(null,path.join(__dirname,'./../'+process.env.IMAGE_UPLOAD_DIR_PATH));
     },
     filename:function(req,file,callback){
       callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname))

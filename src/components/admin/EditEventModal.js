@@ -45,7 +45,7 @@ const EditEventModal=(props)=>{
         for (var key of formData1.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        const response = await fetch('/api/admin/Event', {
+        const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+'/admin/Event', {
           method: 'PUT',
           body: formData1,
         })
@@ -92,7 +92,7 @@ const EditEventModal=(props)=>{
         }
         else
         {
-            let eurl="/images/uploaded/"+evtRecord.EventImage;
+            let eurl=process.env.REACT_APP_BACKEND_UPLOADS_BASE_PATH+evtRecord.EventImage;
             console.log(eurl);
             const img = {
                 preview: eurl,
@@ -138,7 +138,7 @@ const EditEventModal=(props)=>{
                     <input type="time" className="form-control" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Enter Time of event" aria-label="phone no." aria-describedby="basic-addon1"/>
                     </div>
                     <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">Duration</span>
+                    <span className="input-group-text" id="basic-addon1">Duration(hrs)</span>
                     <input type="number" className="form-control" value={duration} onChange={(e)=>setDuration(e.target.value)} placeholder="Enter Duration" aria-label="phone no." aria-describedby="basic-addon1"/>
                     </div>
 
@@ -146,9 +146,9 @@ const EditEventModal=(props)=>{
                         <span className="input-group-text" id="basic-addon1">State</span>
                         <select className="form-control form-select" value={stateOfEvent} onChange={(e)=>setStateOfEvent(e.target.value)}>
                             <option>Select a State</option>
-                            <option value="active">Active</option>
-                            <option value="new">New</option>
-                            <option value="ended">Ended</option>
+                            <option value="new">Upcoming(New)</option>
+                            <option value="active">Live(Active)</option>
+                            <option value="ended">Completed(Ended)</option>
                         </select>
                     </div>
                     

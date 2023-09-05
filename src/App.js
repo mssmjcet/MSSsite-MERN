@@ -3,6 +3,7 @@ import './App.css';
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
+// import "bootstrap/dist/js/bootstrap.esm"
 import React from 'react';
 import './index.css';
 
@@ -14,11 +15,13 @@ import Register from "./components/user/Register";
 import Projects from "./components/user/Projects";
 import Events from './components/user/Events';
 import Teams from "./components/user/Teams";
-import RegistrationDashboard from "./components/admin/RegistrationDashBoard";
+import RegistrationDashboard from "./components/admin/RegistrationDashboard";
 import EventsDashboard from "./components/admin/EventsDashboard";
 import ProjectsDashBoard from './components/admin/ProjectsDashboard';
 import AdminHome from './components/admin/AdminHome';
 import AdminLogin from './components/admin/AdminLogin';
+import TeamsDashBoard from './components/admin/TeamsDashboard';
+
 
 function App() {
   return (
@@ -30,38 +33,22 @@ function App() {
   <Route path="/teams" element={<Teams/>}  exact/>
   <Route path="/events" element={<Events/>}  exact/>
 
+{process.env?.REACT_APP_ENABLE_ADMIN_PAGES==='true' &&
+ <> 
   <Route path="/admin/home" element={<AdminHome/>} exact/>
   <Route path="/admin/login" element={<AdminLogin/>} exact />
   <Route path="/admin/registrationsDashboard" element={<RegistrationDashboard/>} exact />
   <Route path="/admin/eventsDashboard" element={<EventsDashboard/>} exact />
   <Route path="/admin/projectsDashboard" element={<ProjectsDashBoard/>} exact />
+  <Route path="/admin/teamsDashboard" element={<TeamsDashBoard/>} exact />
+  </>
+ }
   </Routes>
  </BrowserRouter>
   );
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 
 // "start": "node server/index.js",

@@ -13,6 +13,7 @@ const AdminNavbar=()=>{
       <NavLink className="btn btn-outline-light border-0 fw-bold fs-5" to="/admin/registrationsDashboard">Registrations</NavLink>
       <NavLink className="btn btn-outline-light border-0 fw-bold fs-5" to="/admin/eventsDashboard">Events</NavLink>
       <NavLink className="btn btn-outline-light border-0 fw-bold fs-5" to="/admin/projectsDashboard">Projects</NavLink>
+      <NavLink className="btn btn-outline-light border-0 fw-bold fs-5" to="/admin/teamsDashboard">Teams</NavLink>
     </div>
   </div>
 </nav>

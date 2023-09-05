@@ -30,15 +30,15 @@ const EditProjectModal=(props)=>{
         formData1.append('Description',description);
         formData1.append('ProjectLink',projectLink);   
         if(projectImage.data==='')
-            formData1.append('Image','Nil')
+            formData1.append('ProjectImage','Nil')
         else
-            formData1.append('Image', projectImage.data);
-        console.log(formData1);
-        console.log(name);
-        for (var key of formData1.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
-        const response = await fetch('/api/admin/Project', {
+            formData1.append('ProjectImage', projectImage.data);
+        // console.log(formData1);
+        // console.log(name);
+        // for (var key of formData1.entries()) {
+        //     console.log(key[0] + ', ' + key[1]);
+        // }
+        const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+'/admin/Project', {
         method: 'PUT',
         body: formData1,
         })
@@ -78,7 +78,7 @@ const EditProjectModal=(props)=>{
         }
         else
         {
-            let eurl="/images/uploaded/"+prgRecord.Image;
+            let eurl=process.env.REACT_APP_BACKEND_UPLOADS_BASE_PATH+prgRecord.Image;
             console.log(eurl);
             const img = {
                 preview: eurl,
@@ -104,18 +104,18 @@ const EditProjectModal=(props)=>{
                     <form encType="multipart/form-data">
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Name</span>
-                        <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter event Name" aria-label="participant name" aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter project Name" aria-label="participant name" aria-describedby="basic-addon1"/>
                         </div>
 
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon2">Description</span>
-                        <textarea className="form-control" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Enter event description" aria-label="email Id" aria-describedby="basic-addon2"/>
+                        <textarea className="form-control" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Enter project description" aria-label="email Id" aria-describedby="basic-addon2"/>
                         </div>
                         
                     
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Project Link</span>
-                        <input type="text" className="form-control" value={projectLink} onChange={(e)=>setProjectLink(e.target.value)} placeholder="Enter Payment Number" aria-label="participant name" aria-describedby="basic-addon1"/>
+                        <input type="text" className="form-control" value={projectLink} onChange={(e)=>setProjectLink(e.target.value)} placeholder="Enter Project Link" aria-label="participant name" aria-describedby="basic-addon1"/>
                         </div>
                         
                         <div className="mb-3">
