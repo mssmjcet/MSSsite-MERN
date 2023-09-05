@@ -1,8 +1,9 @@
 const mongoose=require('mongoose');
+const dotenv=require("dotenv");
+dotenv.config();
 
-const connectDB=mongoose.connect("mongodb+srv://SyedMohammedQuadri:Ab13579@cluster0.nhva0zg.mongodb.net/MsterDB");
-
-// const connectDB=mongoose.connect("mongodb://127.0.0.1:27017/mssDb");
+const connectDB=mongoose.connect(process.env.MONGO_URI);
+// const connectDB=mongoose.connect("mongodb://127.0.0.1:27017/MssDB");
 
 module.exports = connectDB;
-// Ab13579
+

@@ -29,7 +29,7 @@ const AddEventModal=(props)=>{
         formData.append('PaymentNumber',paymentNumber);   
         formData.append('EventImage', eventImage.data)
         console.log(formData);
-        const response = await fetch('/api/admin/Event', {
+        const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+'/admin/Event', {
           method: 'POST',
           body: formData,
         })
@@ -84,7 +84,7 @@ const AddEventModal=(props)=>{
                     <input type="time" className="form-control" onChange={(e)=>setTime(e.target.value)} placeholder="Enter Time of event" aria-label="phone no." aria-describedby="basic-addon1"/>
                     </div>
                     <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">Duration</span>
+                    <span className="input-group-text" id="basic-addon1">Duration(hrs)</span>
                     <input type="number" className="form-control" onChange={(e)=>setDuration(e.target.value)} placeholder="Enter Duration" aria-label="phone no." aria-describedby="basic-addon1"/>
                     </div>
                     
@@ -92,9 +92,9 @@ const AddEventModal=(props)=>{
                         <span className="input-group-text" id="basic-addon1">State</span>
                         <select className="form-control form-select" onChange={(e)=>setStateOfEvent(e.target.value)}>
                             <option>Select a State</option>
-                            <option value="new">New</option>
-                            <option value="active">Active</option>
-                            <option value="ended">Ended</option>
+                            <option value="new">Upcoming(New)</option>
+                            <option value="active">Live(Active)</option>
+                            <option value="ended">Completed(Ended)</option>
                         </select>
                     </div>
 

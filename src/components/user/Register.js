@@ -1,9 +1,8 @@
 import "./../../assets/style.css";
-
 import { useEffect, useState } from "react";
-import UserNavbar from "./UserNavbar";
-import UserNavbar2 from "./UserNavbar2";
 import Footer2 from "./Footer2";
+import UserNavbar3 from "./UserNavbar3";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [rollNo, setRollNo] = useState("");
@@ -30,7 +29,7 @@ const Register = () => {
     formData.append("EventId", eventId);
     formData.append("PaymentStatus", paymentStatus);
     formData.append("PaymentScreenshot", paymentScreenshot.data);
-    const response = await fetch("/api/users/Registration", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+"/users/Registration", {
       method: "POST",
       body: formData,
     })
@@ -66,7 +65,7 @@ const Register = () => {
 },[]);
 
 const fetchEventsData=()=>{
-    fetch('/api/admin/Event').then((res)=>res.json())
+    fetch(process.env.REACT_APP_BACKEND_API_URL+'/users/Event').then((res)=>res.json())
     .then((data)=>{
         if(data.eventsData)
         setEventsData(data.eventsData);
@@ -78,7 +77,7 @@ const fetchEventsData=()=>{
 
   return (
     <div id="registerForm">
-      <UserNavbar2 />
+      <UserNavbar3/>
       {/* <div className="form-icon">
         <span><i className="icon icon-user"></i></span>
     </div> */}
