@@ -19,7 +19,6 @@ const {addNewProject,
       deleteParticularProject,
       updateParticularProject,
       getAllProjects}=require("./../controllers/ProjectsController");
-const { getAllMembers, getMemberWithId, addNewMember, updateParticularMember, deleteParticularMember } = require("../controllers/TeamsController");
 
 
 const router=express.Router();
@@ -46,13 +45,6 @@ router.route('/Project/:projectId').get(getProjectWithId);
 router.route('/Project').post(addNewProject);
 router.route('/Project').put(updateParticularProject);
 router.route('/Project/:projectId').delete(deleteParticularProject);
-
-//teams routes
-router.route('/Team').get(getAllMembers);
-router.route('/Team/:memberId').get(getMemberWithId);
-router.route('/Team').post(addNewMember);
-router.route('/Team').put(updateParticularMember);
-router.route('/Team/:memberId').delete(deleteParticularMember);
 
 router.route('/save').post(saveFiles);
 

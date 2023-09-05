@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import EditRegistrationModal from "./EditRegistrationModal";
 
 const RegistrationDashboard=()=>{
-    const BASE_URL=process.env.REACT_APP_BACKEND_API_URL + '/admin/Registration'
+
     const [regId,setRegId]=useState(-1);
     const [eventId,setEventId]=useState(0);
     const [eventData,setEventData]=useState([]);
@@ -17,7 +17,7 @@ const RegistrationDashboard=()=>{
     },[]);
     
     const fetchEventsData=()=>{
-        fetch(process.env.REACT_APP_BACKEND_API_URL + '/admin/Event').then((res)=>res.json())
+        fetch('/api/admin/Event').then((res)=>res.json())
         .then((data)=>{
             if(data.eventsData)
             setEventData(data.eventsData);
@@ -26,45 +26,48 @@ const RegistrationDashboard=()=>{
         })
         console.log("fetched");
     }
-   
+    // useEffect(()=>{
+    //     console.log(eventName)
+    // },[eventName]);
+
     const fetchRegistrationsForEvent=(value)=>{
         const newEventId=value;
         setEventId(newEventId);
         setEventName(eventData.find((evt)=>evt._id===value)?.Name)
         
-        
-        fetch(BASE_URL+'/'+newEventId,{
+        //fetch registrations
+        fetch('/api/admin/Registration/'+newEventId,{
         method: "GET",
         })
         .then((res) => res.json())
         .then((data)=> {
             setRegistrationData(data.regData);
             console.log(data);
-           
+           //setLoading(false);
         })
     }
     const deleteRegistrationRecord=(registrationId)=>{
-        
-        fetch(BASE_URL+'/'+registrationId,{
+        //fetch registrations
+        fetch('/api/admin/Registration/'+registrationId,{
         method: "DELETE",
         })
         .then((res) => res.json())
         .then((data)=> {
             alert(data.message);
             console.log(data);
-         
+           //setLoading(false);
            fetchRegistrationsForEvent(eventId);
         })
     }
     const deleteRegistrationsForEvent=(e)=>{
-        fetch(BASE_URL + '/Event/'+eventId,{
+        fetch('/api/admin/Registration/Event/'+eventId,{
         method: "DELETE",
         })
         .then((res) => res.json())
         .then((data)=> {
             alert(data.message);
             console.log(data);
-        
+           //setLoading(false);
            fetchRegistrationsForEvent(eventId);
         })
     }
@@ -74,7 +77,9 @@ const RegistrationDashboard=()=>{
         <>
         <AdminNavbar/>
         <div className="container-fluid">
-        
+                        {/* <!-- Button trigger modal --> */}
+           
+
             {/* <!-- Modal- new registration details --> */}
             <AddRegistrationModal fetchRegistrationsForEvent={fetchRegistrationsForEvent} eventId={eventId} eventName={eventName} />
             {/* <!-- Modal -registration details update--> */}
@@ -107,7 +112,7 @@ const RegistrationDashboard=()=>{
                 <div className="col-3">
                 </div>
                 <div className="col-6">
-                    <input type="text" name="searchInput" className="form-control" onChange={(e)=>setSearchInput(e.target.value)} value={searchInput} placeholder="Enter a name/email/phone_no/roll_no to filter" />
+                    <input type="text" name="searchInput" className="form-control" onChange={(e)=>setSearchInput(e.target.value)} value={searchInput} placeholder="Enter a name to search" />
                 </div>
                 <div className="col-3">
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#newRegistration">
@@ -131,20 +136,19 @@ const RegistrationDashboard=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {registrationData?.map((reg,index)=>{
-                        if(searchInput==="" || reg.nameOfParticipant.includes(searchInput) || reg.rollNumber.toString().includes(searchInput) || reg.emailId.includes(searchInput) || reg.phoneNumber.includes(searchInput))
+                    {registrationData?.map((registration,index)=>{
                         return(
                             <tr>
                     <th scope="row">{index+1}</th>
-                    <td>{reg.nameOfParticipant}</td>
-                    <td>{reg.rollNumber}</td>
-                    <td>{reg.emailId}</td>
-                    <td>{reg.phoneNumber}</td>
-                    <td>{reg.paymentStatus}</td>
-                    <td><img src={process.env.REACT_APP_BACKEND_UPLOADS_BASE_PATH + reg.paymentFile} className="img-fluid" /></td>
+                    <td>{registration.nameOfParticipant}</td>
+                    <td>{registration.rollNumber}</td>
+                    <td>{registration.emailId}</td>
+                    <td>{registration.phoneNumber}</td>
+                    <td>{registration.paymentStatus}</td>
+                    <td><img src={"/images/uploaded/"+registration.paymentFile} className="img-fluid" /></td>
                     <td>
-                        <button className="btn btn-success" onClick={()=>setRegId(reg._id)} data-bs-toggle="modal" data-bs-target="#updateRegistration">Edit</button>
-                        <button className="btn btn-danger" onClick={()=>deleteRegistrationRecord(reg._id)}>Delete</button>
+                        <button className="btn btn-success" onClick={()=>setRegId(registration._id)} data-bs-toggle="modal" data-bs-target="#updateRegistration">Edit</button>
+                        <button className="btn btn-danger" onClick={()=>deleteRegistrationRecord(registration._id)}>Delete</button>
                     </td>
                     </tr>
                         );

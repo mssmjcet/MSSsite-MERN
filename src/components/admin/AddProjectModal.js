@@ -16,9 +16,9 @@ const AddProjectModal=(props)=>{
         formData.append('Name',name);
         formData.append('Description',description);
         formData.append('ProjectLink',projectLink);   
-        formData.append('ProjectImage', projectImage.data)
+        formData.append('Image', projectImage.data)
         console.log(formData);
-        const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+'/admin/Project', {
+        const response = await fetch('/api/admin/Project', {
           method: 'POST',
           body: formData,
         })
@@ -26,7 +26,6 @@ const AddProjectModal=(props)=>{
         .then((data)=>{
             setStatus(data.message)
             props.fetchProjectsData();
-            // console.log('called fetch')
         })
         setLoading(false);
       }

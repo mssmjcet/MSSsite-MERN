@@ -4,24 +4,28 @@ const express = require("express");
 const userRoutes=require('./routes/userRoutes');
 const adminRoutes= require('./routes/adminRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
-
+const PORT = process.env.PORT || 3001;
 const dotenv=require("dotenv");
+var multer = require('multer');
 const connectDB=require("./config/db");
 const morgan=require("morgan");
 const fs=require('fs');
-const cors=require('cors');
+// const {addNewRegistration}=require("./controllers/adminController");
 const bodyParser=require('body-parser');
 
-dotenv.config();
-const PORT = process.env.BACKEND_PORT || 3001;
+fs.writeFile("./public/jsonFiles/data.json",JSON.stringify({name:"shah",rollno:12345,imgUrl:'logo512.png'}),()=>{
+  console.log('done');
+});
+var upload = multer();
+
 
 const app=express();
-app.use("/images",express.static(path.join(__dirname,process.env.IMAGE_STORAGE_DIR_PATH)));
+app.use("/images",express.static(path.join(__dirname,"./storage/images")));
+// app.use("/static",express.static(path.join(__dirname,"./storage/images/static")));
+dotenv.config();
 
 // connectDB();
-app.use(cors({
-  origin: process.env.FRONTEND_BASE_URI
-}))
+
 app.use(express.json());
 app.use(morgan('dev'));
 

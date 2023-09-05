@@ -22,7 +22,7 @@ const AddRegistrationModal=(props)=>{
         formData.append('EventId',props.eventId);
         formData.append('PaymentStatus',paymentStatus);
         formData.append('PaymentScreenshot', paymentScreenshot.data)
-        const response = await fetch(process.env.REACT_APP_BACKEND_API_URL+'/admin/Registration', {
+        const response = await fetch('/api/admin/Registration', {
           method: 'POST',
           body: formData,
         })
@@ -56,7 +56,7 @@ const AddRegistrationModal=(props)=>{
       }
    
 return(<>
-        <div className="modal fade" id="newRegistration" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal fade" id="newRegistration" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -90,32 +90,32 @@ return(<>
 
                         
                         <label className="form-control form-label">Payment Status</label>
-                        <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler}/>
-                        <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio1" value="Yes" onChange={paymentStatusHandler}/>
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
                         </div>
-                        <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler}/>
-                        <label className="form-check-label" htmlFor="inlineRadio2">No</label>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paymentStatus" id="inlineRadio2" value="No" onChange={paymentStatusHandler}/>
+                        <label class="form-check-label" for="inlineRadio2">No</label>
                         </div>
                         
                         <br/>
-                        <label htmlFor="basic-url" className="form-label">Payment Url</label>
+                        <label for="basic-url" className="form-label">Payment Url</label>
                         <a href="#" className="link">dummy</a>
                         {paymentStatus==='Yes' &&
-                            <div className="mb-3">
-                            <label htmlFor="formFile" className="form-label">Upload Payment Screenshot</label>
-                            <input className="form-control" type="file" id="formFile" onChange={handleFileChange}/>
+                            <div class="mb-3">
+                            <label for="formFile" class="form-label">Upload Payment Screenshot</label>
+                            <input class="form-control" type="file" id="formFile" onChange={handleFileChange}/>
                             </div>
                         }
                         {paymentScreenshot.preview!=='' && <img className="img-fluid" src={paymentScreenshot.preview} />}
                     </form>
                 </div>
                 <div className="modal-footer">
-                { loading && <div className="spinner-border text-primary" role="status">
-                    <span className="sr-only">Loading...</span>
+                { loading && <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>}
-                {status && <div className="text-center bg-info">{status}</div>}
+                {status && <div class="text-center bg-info">{status}</div>}
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" className="btn btn-primary" onClick={createNewRegistration}>Create</button>
                 </div>

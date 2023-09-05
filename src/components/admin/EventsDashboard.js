@@ -4,7 +4,7 @@ import AddEventModal from "./AddEventModal";
 import EditEventModal from "./EditEventModal";
 
 const EventsDashboard=()=>{
-const BASE_URL=process.env.REACT_APP_BACKEND_API_URL+'/admin/Event'
+ 
 const [searchInput,setSearchInput]=useState("");
 const [eventId,setEventId]=useState(-1);
 const [eventData,setEventData]=useState([]);
@@ -15,7 +15,7 @@ useEffect(()=>{
 },[]);
 
 const fetchEventsData=()=>{
-    fetch(BASE_URL).then((res)=>res.json())
+    fetch('/api/admin/Event').then((res)=>res.json())
     .then((data)=>{
         if(data.eventsData)
         setEventData(data.eventsData);
@@ -27,7 +27,7 @@ const fetchEventsData=()=>{
 
 const deleteEvent=(EventId)=>{
     //fetch registrations
-    fetch(BASE_URL+'/'+EventId,{
+    fetch('/api/admin/Event/'+EventId,{
     method: "DELETE",
     })
     .then((res) => res.json())
@@ -75,9 +75,9 @@ return(
             </div>
             <div className="col-6">
                 <form>
-                    <input type="text" className="form-control m-1" name="searchInput" placeholder="Enter an event name to Search" onChange={(e)=>setSearchInput(e.target.value)} value={searchInput}  />
+                    <input type="text" className="form-control m-1" name="searchInput" placeholder="Enter an event name" onChange={(e)=>setSearchInput(e.target.value)} value={searchInput}  />
                 </form>
-                <i className="bi bi-search"></i>
+                <i class="bi bi-search"></i>
             </div>
             <div className="col-3">
                 <button type="button" className="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#newEvent">
@@ -108,7 +108,7 @@ return(
             return(
                 <div className="col-sm-4">
                 <div className="card mb-3 h-100">
-                <img src={process.env.REACT_APP_BACKEND_UPLOADS_BASE_PATH + evt.EventImage} className="card-img-top" alt="..."/>
+                <img src={"/images/uploaded/"+evt.EventImage} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">{evt.Name}</h5>
                     <p className="card-text">{evt.Description}</p>
@@ -116,22 +116,22 @@ return(
                         <div className="col-6">
                             <p className="card-text"><span className="fw-bold">Start Date:</span> {evt.StartDate}</p>
                             <p className="card-text"><span className="fw-bold">Time:</span> {evt.Time}</p>
-                            <p className="card-text"><span className="fw-bold">State Of Event: </span> 
+                            <p className="card-text"><span className="fw-bold">State Of Event:</span> 
                             {evt.StateOfEvent==='new' &&
-                                <button className="btn btn-sm btn-primary"> Upcoming </button>
+                                <button className="btn btn-sm btn-primary"> {evt.StateOfEvent}</button>
                             }
                             {evt.StateOfEvent==='active' &&
-                                <button className="btn btn-sm btn-success"> Live </button>
+                                <button className="btn btn-sm btn-success"> {evt.StateOfEvent}</button>
                             }
                             {evt.StateOfEvent==='ended' &&
-                                <button className="btn btn-sm btn-danger"> Completed </button>
+                                <button className="btn btn-sm btn-danger"> {evt.StateOfEvent}</button>
                             }
                             </p>
                            
                         </div>
                         <div className="col-6">
                             <p className="card-text"><span className="fw-bold">End Date:</span> {evt.EndDate}</p>
-                            <p className="card-text"><span className="fw-bold">Duration:</span> {evt.Duration} hrs</p>
+                            <p className="card-text"><span className="fw-bold">Duration:</span> {evt.Duration}</p>
                             <p className="card-text"><span className="fw-bold">Type Of Event:</span> {evt.TypeOfEvent}</p>
                         </div>
                     </div>
