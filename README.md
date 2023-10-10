@@ -9,7 +9,7 @@ If the site has to be hosted statically then database data can be stored in json
 ## Project Structure and Technologies
 The project is created using create-react-app. The `root` folder contains the frontend code. And the backend code exists in `server` folder inside the root folder.
 
-For more info see [Project Structure docs](docs\project-structure.md)
+For more info see [Project Structure docs](docs/project-structure.md)
 
 ## Environment Variables
 The environment variables help control the project configuration and few features from a single place. They are stored in `.env` file in the root folder.
