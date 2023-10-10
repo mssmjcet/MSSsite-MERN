@@ -4,30 +4,33 @@ Admin operations consist of CRUD operations on events data, projects data, team 
 ## Teams Data
 From the admin page  `/admin/teamsDashboard` you can create new members, delete existing ones, update member information and view data of all members.
 
-![admin-teams-page](images/admin-teams.png)
+![admin-teams](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/8462a36c-3a42-4513-bf4d-d7e5bbeb5da5)
 
 You can create a new Member by adding the following details for them.
 
-![admin-add-member](images/add-member-page.png)
+![add-member-page](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/3c35d581-0002-449a-8447-03727ce42b68)
 
-Similarly you can edit details od a member by clicking the edit button.
+Similarly you can edit details of a member by clicking the edit button.
 
 ## Projects Data
 From the admin page  `/admin/projectsDashboard` you can perform CRUD operations on projects data.
 
-![projects-dashboard](images/admin-projects.png)
+![admin-projects](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/2a0f1577-a27f-4852-bfb3-b52413684409)
 
 You can update the projects details as shown below.
-![edit-project](images/edit-projects.png)
+
+![edit-projects](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/37fa367a-647f-4d53-96e2-a28ffe166b07)
+
 
 ## Events Data
 From the admin page  `/admin/eventsDashboard` you can perform CRUD operations on events data.
 
-![event-dashboard](images/admin-events.png)
+![admin-events](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/34089827-0bf6-4003-ba71-ef4d15cf2fbf)
 
 New events can be added by filling the following details.
 
-![add-event](images/add-event.png)
+![add-event](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/a8a75dc9-c9e9-4e61-aa26-53dedbda200a)
+
 
 ## Registration Data
 From the admin page  `/admin/registrationsDashboard` you can perform CRUD operations on registrations for a event.
@@ -36,7 +39,7 @@ To view Registrations ,first select a event from the first dropdown , then if an
 
 **NOTE**:- To select a event, first event must be added in the events dashboard page if not created already. 
 
-![registartion-dashboard](images/admin-registration.png)
+![admin-registration](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/61f278e7-63ae-457c-a0f7-ff36aadfe9d9)
 
 You can add new registrations from this page as well , and view any registrations done by users.
 
@@ -47,5 +50,6 @@ This static data can be accessed by the user pages of the frontend, so that the 
 
 And whenever a update needs to be done, it can be done locally, then changes can be saved statically , and the updated version of the site can be deployed,thereby saving time.
 
-![admin-home-page](images/admin-home-page.png)
+![admin-home-page](https://github.com/mssmjcet/MSSsite-MERN/assets/56332670/658501ef-4e68-412d-8000-9befad9e0dea)
+
 
